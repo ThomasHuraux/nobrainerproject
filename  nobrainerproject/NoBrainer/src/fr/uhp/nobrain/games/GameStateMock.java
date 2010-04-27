@@ -1,5 +1,7 @@
 package fr.uhp.nobrain.games;
 
+import javax.swing.JLabel;
+
 public class GameStateMock implements GameState {
 
 	private int timeRemaining = 45000;
@@ -24,8 +26,8 @@ public class GameStateMock implements GameState {
 	}
 
 	@Override
-	public void start() {
-		// TODO Auto-generated method stub
+	public void start(GraphicContext graphicContext) {
+		graphicContext.add(new JLabel("test"));
 
 	}
 

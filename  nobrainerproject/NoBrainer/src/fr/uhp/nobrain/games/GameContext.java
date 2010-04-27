@@ -6,6 +6,7 @@ public class GameContext implements Game, StateTransition {
 
 	private GameState gameState;
 	private GameTimer timer;
+	private GraphicContext graphicContext;
 	
 	private int level;
 	private int score;
@@ -14,6 +15,7 @@ public class GameContext implements Game, StateTransition {
 		super();
 		this.gameState = null;
 		this.timer = new GameTimer();
+		this.graphicContext = new GraphicContext();
 		this.level = level;
 		this.score = 0;
 	}
@@ -22,7 +24,7 @@ public class GameContext implements Game, StateTransition {
 		if (! StateTransition.list.isEmpty()) {
 			changeToState(StateTransition.list.remove(0));
 			timer.start(this);
-	    	gameState.start();
+	    	gameState.start(graphicContext);
 		}
 		
     	return score;
@@ -32,7 +34,7 @@ public class GameContext implements Game, StateTransition {
 		score += gameState.stop();
     	if(! StateTransition.list.isEmpty()){
     		changeToState(StateTransition.list.remove(0));
-    		gameState.start();
+    		gameState.start(graphicContext);
     	}
     }
 	
@@ -45,7 +47,7 @@ public class GameContext implements Game, StateTransition {
     }
 
     public JPanel getGraphicContext () {
-        return null;
+        return this.graphicContext;
     }
 
 	public int getLevel() {

@@ -10,7 +10,7 @@ public class NumState implements GameState {
     }
 
     @Override
-	public void start() {
+	public void start(GraphicContext graphicContext) {
 		// TODO Auto-generated method stub		
 	}
 

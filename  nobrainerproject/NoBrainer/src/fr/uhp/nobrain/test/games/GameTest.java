@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import fr.uhp.nobrain.games.Game;
 import fr.uhp.nobrain.games.GameContext;
+import fr.uhp.nobrain.games.GameStateMock;
+import fr.uhp.nobrain.games.StateTransition;
 import static org.junit.Assert.*;
 
 /**
@@ -19,12 +21,20 @@ import static org.junit.Assert.*;
  */
 public class GameTest {
 
-    @Before
+	int level;
+	GameContext instance;
+	
+	@Before
     public void setUp() {
+    	level = 0;
+    	instance = new GameContext(level);
+        StateTransition.list.add(new GameStateMock());
     }
 
     @After
     public void tearDown() {
+    	instance = null;
+    	StateTransition.list.clear();
     }
 
     /**

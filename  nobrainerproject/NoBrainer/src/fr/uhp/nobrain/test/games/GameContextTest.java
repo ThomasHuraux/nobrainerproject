@@ -93,11 +93,10 @@ public class GameContextTest {
     public void testGetGraphicContext() {
         System.out.println("getGraphicContext");
         setUp();
-        JPanel expResult = null;
         
         JPanel result = instance.getGraphicContext();
         
-        assertEquals(expResult, result);
+        assertNotNull(result);
         
         tearDown();
     }
