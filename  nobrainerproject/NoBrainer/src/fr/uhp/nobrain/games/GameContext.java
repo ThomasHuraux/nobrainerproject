@@ -10,10 +10,10 @@ public class GameContext implements Game, StateTransition {
 	private int level;
 	private int score;
 	
-    public GameContext(GameState gameState, GameTimer timer, int level) {
+    public GameContext(int level) {
 		super();
-		this.gameState = gameState;
-		this.timer = timer;
+		this.gameState = null;
+		this.timer = new GameTimer();
 		this.level = level;
 		this.score = 0;
 	}

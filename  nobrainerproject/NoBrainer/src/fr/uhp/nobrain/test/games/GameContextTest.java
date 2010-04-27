@@ -29,9 +29,9 @@ public class GameContextTest {
     public void testStart() {
         System.out.println("start");
         int level = 0;
-        GameContext instance = new GameContext();
+        GameContext instance = new GameContext(level);
         
-        instance.start(level);
+        instance.start();
         
         assertEquals(instance.getLevel(),level);
         assertNotNull(instance.getGameState());
@@ -44,7 +44,7 @@ public class GameContextTest {
     @Test
     public void testStop() {
         System.out.println("stop");
-        GameContext instance = new GameContext();
+        GameContext instance = new GameContext(0);
         
         GameState previous = instance.getGameState();
         int level = instance.getLevel();
@@ -63,7 +63,7 @@ public class GameContextTest {
     public void testChangeToState() {
         System.out.println("changeToState");
         GameState gameState = null;
-        GameContext instance = new GameContext();
+        GameContext instance = new GameContext(0);
         
         GameState previous = instance.getGameState();
         
@@ -78,7 +78,7 @@ public class GameContextTest {
     @Test
     public void testGetGraphicContext() {
         System.out.println("getGraphicContext");
-        GameContext instance = new GameContext();
+        GameContext instance = new GameContext(0);
         JPanel expResult = null;
         
         JPanel result = instance.getGraphicContext();
