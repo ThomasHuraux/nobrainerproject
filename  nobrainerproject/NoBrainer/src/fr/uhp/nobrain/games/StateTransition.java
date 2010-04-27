@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StateTransition {
 
-    public static final List list = new ArrayList<GameState>();
+    public static final ArrayList<GameState> list = new ArrayList<GameState>();
 
     public void changeToState (GameState gameState);
 

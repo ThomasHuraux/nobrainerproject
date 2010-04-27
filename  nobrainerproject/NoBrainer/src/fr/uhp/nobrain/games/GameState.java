@@ -5,7 +5,7 @@ public interface GameState {
 
     public static final int timeRemaining = 0;
 
-    public void start (int level);
+    public int start (int level);
 
     public int stop ();
 
