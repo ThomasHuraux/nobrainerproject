@@ -2,7 +2,7 @@ package fr.uhp.nobrain.games;
 
 public class GameStateMock implements GameState {
 
-	private int timeRemaining = 45;
+	private int timeRemaining = 45000;
 	private int level = 0;
 	
 	@Override
@@ -24,7 +24,7 @@ public class GameStateMock implements GameState {
 	}
 
 	@Override
-	public void start(int level) {
+	public void start() {
 		// TODO Auto-generated method stub
 
 	}

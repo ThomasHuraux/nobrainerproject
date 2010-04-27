@@ -34,9 +34,9 @@ public class GameTest {
     public void testStart() {
         System.out.println("start");
         int level = 0;
-        Game instance = new GameContext();
+        Game instance = new GameContext(level);
         
-        instance.start(level);
+        instance.start();
         
         assertEquals(level,instance.getLevel());
     }
@@ -47,12 +47,12 @@ public class GameTest {
     @Test
     public void testStop() {
         System.out.println("stop");
-        Game instance = new GameContext();
-       
+        int level = 0;
+        Game instance = new GameContext(level);
+        instance.start();
         instance.stop();
         
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(level,instance.getLevel());
     }
 
 }

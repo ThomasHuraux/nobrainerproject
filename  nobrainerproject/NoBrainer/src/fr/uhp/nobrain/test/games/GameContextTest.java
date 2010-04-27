@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import fr.uhp.nobrain.games.GameContext;
 import fr.uhp.nobrain.games.GameState;
+import fr.uhp.nobrain.games.GameStateMock;
+import fr.uhp.nobrain.games.StateTransition;
 import static org.junit.Assert.*;
 
 /**
@@ -14,12 +16,20 @@ import static org.junit.Assert.*;
  */
 public class GameContextTest {
 
+	GameContext instance;
+	int level;
+	
     @Before
     public void setUp() {
+    	level = 0;
+    	instance = new GameContext(level);
+        StateTransition.list.add(new GameStateMock());
     }
 
     @After
     public void tearDown() {
+    	instance = null;
+    	StateTransition.list.clear();
     }
 
     /**
@@ -28,14 +38,15 @@ public class GameContextTest {
     @Test
     public void testStart() {
         System.out.println("start");
-        int level = 0;
-        GameContext instance = new GameContext(level);
+        setUp();
         
         instance.start();
         
         assertEquals(instance.getLevel(),level);
         assertNotNull(instance.getGameState());
         assertNotNull(instance.getGraphicContext());
+        
+        tearDown();
     }
 
     /**
@@ -44,16 +55,18 @@ public class GameContextTest {
     @Test
     public void testStop() {
         System.out.println("stop");
-        GameContext instance = new GameContext(0);
+        setUp();
         
         GameState previous = instance.getGameState();
-        int level = instance.getLevel();
-        
+        int lvl = instance.getLevel();
+        instance.start();
         instance.stop();
         
         assertFalse(instance.getGameState().equals(previous));
-        assertTrue(instance.getLevel() == level);
+        assertTrue(instance.getLevel() == lvl);
         assertNotNull(instance.getGraphicContext());
+        
+        tearDown();
     }
 
     /**
@@ -62,14 +75,15 @@ public class GameContextTest {
     @Test
     public void testChangeToState() {
         System.out.println("changeToState");
-        GameState gameState = null;
-        GameContext instance = new GameContext(0);
-        
+        setUp();
+        GameState gameState = new GameStateMock();
         GameState previous = instance.getGameState();
         
         instance.changeToState(gameState);
         
         assertFalse(instance.getGameState().equals(previous));
+        
+        tearDown();
     }
 
     /**
@@ -78,12 +92,14 @@ public class GameContextTest {
     @Test
     public void testGetGraphicContext() {
         System.out.println("getGraphicContext");
-        GameContext instance = new GameContext(0);
+        setUp();
         JPanel expResult = null;
         
         JPanel result = instance.getGraphicContext();
         
         assertEquals(expResult, result);
+        
+        tearDown();
     }
 
 }

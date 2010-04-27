@@ -9,9 +9,12 @@ public class NumState implements GameState {
     public NumState () {
     }
 
-    public void start (int level) {
-    }
+    @Override
+	public void start() {
+		// TODO Auto-generated method stub		
+	}
 
+    
     public int stop () {
         return 0;
     }
@@ -30,6 +33,5 @@ public class NumState implements GameState {
 	public int getTimeRemaining() {
 		return this.timeRemaining;
 	}
-
 }
 

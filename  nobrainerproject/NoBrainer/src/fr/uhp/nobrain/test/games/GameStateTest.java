@@ -31,7 +31,7 @@ public class GameStateTest {
         GameState instance = new GameStateMock();
 //        int timeRemaining = instance.getTimeRemaining();
         
-        instance.start(level);
+        instance.start();
         
         assertTrue(instance.getLevel() == level);
 //        assertTrue(instance.getTimeRemaining() == timeRemaining);

@@ -19,9 +19,12 @@ public class GameContext implements Game, StateTransition {
 	}
 
 	public int start () {
-		changeToState(StateTransition.list.remove(0));
-		timer.start(this);
-    	gameState.start(level);
+		if (! StateTransition.list.isEmpty()) {
+			changeToState(StateTransition.list.remove(0));
+			timer.start(this);
+	    	gameState.start();
+		}
+		
     	return score;
     }
 
@@ -29,7 +32,7 @@ public class GameContext implements Game, StateTransition {
 		score += gameState.stop();
     	if(! StateTransition.list.isEmpty()){
     		changeToState(StateTransition.list.remove(0));
-    		gameState.start(level);
+    		gameState.start();
     	}
     }
 	
@@ -55,6 +58,10 @@ public class GameContext implements Game, StateTransition {
 
 	public int getScore() {
 		return score;
+	}
+
+	public GameTimer getTimer() {
+		return timer;
 	}
 
 }

@@ -24,7 +24,7 @@ public class TimerView extends JPanel{
 		this.width = DEFAULT_W;
 		this.height = DEFAULT_H;
 		
-		this.progress = new JProgressBar(size);
+		this.progress = new JProgressBar(0,size);
 		add(progress);
 		
 		progress.setPreferredSize(new Dimension(width,height));
