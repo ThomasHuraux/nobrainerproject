@@ -1,7 +1,6 @@
 package fr.uhp.nobrain.games;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public interface StateTransition {

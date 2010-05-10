@@ -5,6 +5,9 @@ public interface GameState {
 
     public static final int timeRemaining = 0;
 
+
+
+
     public void start (GraphicContext graphicContext);
 
     public int stop ();

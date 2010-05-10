@@ -61,10 +61,11 @@ public class GameContext implements Game, StateTransition {
 	public int getScore() {
 		return score;
 	}
-
-	public GameTimer getTimer() {
+	
+	public GameTimer getTimer(){
 		return timer;
 	}
+
 
 }
 

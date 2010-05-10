@@ -57,9 +57,14 @@ public class GameTest {
     @Test
     public void testStop() {
         System.out.println("stop");
+<<<<<<< .mine
+        Game instance = new GameContext(0);
+       
+=======
         int level = 0;
         Game instance = new GameContext(level);
         instance.start();
+>>>>>>> .r9
         instance.stop();
         
         assertEquals(level,instance.getLevel());

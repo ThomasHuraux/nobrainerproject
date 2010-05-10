@@ -43,6 +43,7 @@ public class TimerView extends JPanel{
 		return progress;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
@@ -51,6 +52,7 @@ public class TimerView extends JPanel{
 		this.width = width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
