@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.games;
+package fr.uhp.nobrain.games.timer;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,25 +10,20 @@ public class TimerView extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private static final int REFRESH_DELAY = 1000;
-	private static final int DEFAULT_W = 120;
-	private static final int DEFAULT_H = 20;
+
 	
 	private JProgressBar progress;
-	
-	private int width;
-	private int height;
-	
+
 	private TimerView(int size) {
 		super();
 		
-		this.width = DEFAULT_W;
-		this.height = DEFAULT_H;
-		
 		this.progress = new JProgressBar(0,size);
 		add(progress);
-		
-		progress.setPreferredSize(new Dimension(width,height));
-		setPreferredSize(new Dimension(width,height));
+
+	}
+	
+	public void reInit(){
+		progress.setValue(0);
 	}
 	
 	public static TimerView create(int size){
@@ -41,24 +36,6 @@ public class TimerView extends JPanel{
 
 	public JProgressBar getProgress() {
 		return progress;
-	}
-
-	@Override
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	@Override
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
 	}
 
 	public static int getRefreshDelay() {

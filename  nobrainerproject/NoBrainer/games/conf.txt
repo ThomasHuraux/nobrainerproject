@@ -1,0 +1,2 @@
+games/GameStateMock1.jar	GameStateMock1
+games/GameStateMock2.jar	GameStateMock2

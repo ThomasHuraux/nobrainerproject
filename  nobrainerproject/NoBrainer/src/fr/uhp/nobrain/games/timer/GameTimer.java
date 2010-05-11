@@ -1,10 +1,12 @@
-package fr.uhp.nobrain.games;
+package fr.uhp.nobrain.games.timer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import fr.uhp.nobrain.games.GameContext;
 
 public class GameTimer{
 
@@ -14,21 +16,29 @@ public class GameTimer{
 	private Timer refresh;
 	
 	private int time = 0;
+	private ActionListener updatePerformer;
 
 	public JPanel getView () {
         return view;
     }
 
 	public void start(final GameContext context){
-		view = TimerView.create(context.getGameState().getTimeRemaining());
+		time = 0;
 		
-		ActionListener updatePerformer = new ActionListener(){
+		if(view == null)
+			view = TimerView.create(context.getGameState().getTimeRemaining());
+		else
+			view.reInit();
+		
+		updatePerformer = new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				time += TimerView.getRefreshDelay();
 				view.update(time);
 				
-				if(time >= context.getGameState().getTimeRemaining())
+				if(time >= context.getGameState().getTimeRemaining()){
 					context.stopGame();
+				}
+				
 			}
 		};
 		
@@ -36,6 +46,16 @@ public class GameTimer{
 		refresh.setRepeats(true);
 		refresh.start();
 	}
+
+	public int getTime() {
+		return time;
+	}
+	
+	public void stop(){
+		refresh.setRepeats(false);
+		refresh.stop();
+	}
+	
 
 }
 

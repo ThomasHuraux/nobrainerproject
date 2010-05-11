@@ -2,11 +2,14 @@ package fr.uhp.nobrain.games;
 
 import javax.swing.JPanel;
 
+import fr.uhp.nobrain.games.timer.GameTimer;
+
 public class GameContext implements Game, StateTransition {
 
 	private GameState gameState;
 	private GameTimer timer;
 	private GraphicContext graphicContext;
+	private GameStateLoader loader;
 	
 	private int level;
 	private int score;
@@ -14,32 +17,33 @@ public class GameContext implements Game, StateTransition {
     public GameContext(int level) {
 		super();
 		this.gameState = null;
-		this.timer = new GameTimer();
+		this.loader = new GameStateLoader();
 		this.graphicContext = new GraphicContext();
 		this.level = level;
 		this.score = 0;
+		this.timer = new GameTimer();
+		loader.load();
 	}
 
-	public int start () {
+	public void start () {
 		if (! StateTransition.list.isEmpty()) {
+			graphicContext.removeAll();
 			changeToState(StateTransition.list.remove(0));
 			timer.start(this);
-	    	gameState.start(graphicContext);
+	    	gameState.start(level,graphicContext);
 		}
-		
-    	return score;
     }
 
 	public void stopGame() {
 		score += gameState.stop();
     	if(! StateTransition.list.isEmpty()){
-    		changeToState(StateTransition.list.remove(0));
-    		gameState.start(graphicContext);
-    	}
+    		start();
+    	}else stop();
     }
 	
-	public void stop(){
-		score += gameState.stop();
+	public int stop(){
+		timer.stop();
+		return score;
 	}
 
     public void changeToState (GameState gameState) {
