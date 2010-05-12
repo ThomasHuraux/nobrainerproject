@@ -36,7 +36,7 @@ public class LoginView extends JPanel{
 		buttons.add(create);
 		buttons.add(ok);
 		
-		setLayout(new GridLayout(1,3));
+		setLayout(new GridLayout(3,1));
 		add(nicknameP);
 		add(passP);
 		add(buttons);

@@ -55,7 +55,7 @@ public class RegisterView extends JPanel{
 		confirmP.add(new JLabel("Confirm password"));
 		confirmP.add(confirm);
 		
-		setLayout(new GridLayout(1,7));
+		setLayout(new GridLayout(7,1));
 		add(lastnameP);
 		add(firstnameP);
 		add(nicknameP);
