@@ -29,6 +29,8 @@ public class RegisterView extends JPanel{
 		pass = new JTextField();
 		confirm = new JTextField();
 		
+		ok = new JButton("OK");
+		
 		JPanel lastnameP = new JPanel();
 		lastnameP.add(new JLabel("Lastname"));
 		lastnameP.add(lastname);
