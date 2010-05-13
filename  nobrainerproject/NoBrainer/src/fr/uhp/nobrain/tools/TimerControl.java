@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class TimerControl extends Thread implements Timer‫Interface {
+public class TimerControl extends Thread implements TimerInterface {
 	private static final int REFRESH_DELAY = 1000;
 	private int timeRemaining;
 	private ArrayList<Observateur> listObservateur = new ArrayList<Observateur>();
