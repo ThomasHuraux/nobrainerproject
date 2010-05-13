@@ -6,9 +6,8 @@ import java.io.FileReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-
 public class GameStateLoader {
-	
+
 	private static final boolean printTrace = true;
 	private static final String conf = "games/conf.txt";
 	
@@ -19,6 +18,7 @@ public class GameStateLoader {
 			FileReader fr = new FileReader(conf);
 			BufferedReader br = new BufferedReader(fr);
 			String current;
+			
 			while((current=br.readLine()) != null){
 				String[] field = current.split("\t");
 				
@@ -42,5 +42,4 @@ public class GameStateLoader {
 			ex.printStackTrace();
 		}
 	}
-
 }

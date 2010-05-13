@@ -1,10 +1,9 @@
-package fr.uhp.nobrain.games;
+package fr.uhp.nobrain.tools;
 
 import javax.swing.JPanel;
 
-public interface GameState {
+public interface Timer‫Interface {
 	public JPanel getPanel();
 	public void start(int level);
 	public int exit();
-	public String getGameName();
 }

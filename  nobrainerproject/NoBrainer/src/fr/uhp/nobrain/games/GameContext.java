@@ -1,57 +1,58 @@
 package fr.uhp.nobrain.games;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
-import fr.uhp.nobrain.games.timer.GameTimer;
+import fr.uhp.nobrain.highscore.Score;
 
-public class GameContext implements Game, StateTransition {
+
+public class GameContext extends Thread implements GameState, StateTransition {
 
 	private GameState gameState;
-	private GameTimer timer;
-	private GraphicContext graphicContext;
 	private GameStateLoader loader;
+	private Score currentScore;
 	
 	private int level;
 	private int score;
 	
-    public GameContext(int level) {
+    public GameContext() {
 		super();
 		this.gameState = null;
 		this.loader = new GameStateLoader();
-		this.graphicContext = new GraphicContext();
-		this.level = level;
 		this.score = 0;
-		this.timer = new GameTimer();
+		this.currentScore = new Score();
 		loader.load();
 	}
 
-	public void start () {
+	public void start (int level) {
+		this.level = level;
+		
 		if (! StateTransition.list.isEmpty()) {
-			graphicContext.removeAll();
 			changeToState(StateTransition.list.remove(0));
-			timer.start(this);
-	    	gameState.start(level,graphicContext);
+	    	gameState.start(level);
+	    	currentScore.start();
 		}
     }
 
 	public void stopGame() {
-		score += gameState.stop();
+		score += gameState.exit();
+		
     	if(! StateTransition.list.isEmpty()){
-    		start();
-    	}else stop();
+    		start(level);
+    	} else exit();
     }
 	
-	public int stop(){
-		timer.stop();
+	@Override
+	public int exit(){
+		gameState.exit();
+		currentScore.exit();
+		
 		return score;
 	}
 
     public void changeToState (GameState gameState) {
     	this.gameState = gameState;
-    }
-
-    public JPanel getGraphicContext () {
-        return this.graphicContext;
     }
 
 	public int getLevel() {
@@ -65,11 +66,22 @@ public class GameContext implements Game, StateTransition {
 	public int getScore() {
 		return score;
 	}
-	
-	public GameTimer getTimer(){
-		return timer;
+
+	@Override
+	public JPanel getPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.add(currentScore.getPanel(), BorderLayout.NORTH);
+		panel.add(gameState.getPanel(),BorderLayout.CENTER);
+		
+		return panel;
 	}
 
+	@Override
+	public String getGameName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 

@@ -33,8 +33,8 @@ public class GameContainerView extends JPanel{
 		
 		refresh();
 		
-		games = model.getGameContext().getGraphicContext();
-		timer = model.getGameContext().getTimer().getView();
+		games = model.getGameContext().getPanel();
+//		timer = model.getGameContext().getTimer().getView();
 		
 		name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		name.setForeground(Color.white);
@@ -53,7 +53,7 @@ public class GameContainerView extends JPanel{
 	}
 	
 	public void refresh(){
-		name.setText(model.getGameContext().getGameState().getName());
+		name.setText(model.getGameContext().getGameState().getGameName());
 		score.setText("Score : "+model.getGameContext().getScore());
 	}
 

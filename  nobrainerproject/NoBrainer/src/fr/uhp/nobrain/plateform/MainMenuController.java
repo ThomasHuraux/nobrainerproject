@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import fr.uhp.nobrain.games.GameContext;
-import fr.uhp.nobrain.games.GraphicContext;
 
 public class MainMenuController {
 
@@ -25,8 +24,8 @@ public class MainMenuController {
 		
 		view.getPlayButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				GameContext gc = new GameContext(0);
-				gc.start();
+				GameContext gc = new GameContext();
+				gc.start(0);
 				GameContainer container = new GameContainer(gc);
 				GameContainerView gcv = new GameContainerView(container);
 				GameContainerController gcc = new GameContainerController(container,gcv);

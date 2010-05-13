@@ -5,13 +5,12 @@ import java.util.Collections;
 
 import javax.swing.JTable;
 
-public class HighScoreTabView extends HighScoreView{
+public class HighScoreTabView extends HighScoreView {
 
 	private static final long serialVersionUID = 1L;
 	private static final String[] titles = {"Rank","Name","Score"};
 	private JTable table;
 	
-	@SuppressWarnings("unchecked")
 	public HighScoreTabView(ArrayList<Score> scores,int level) {
 		
 		ArrayList<Score> filter = new ArrayList<Score>();
