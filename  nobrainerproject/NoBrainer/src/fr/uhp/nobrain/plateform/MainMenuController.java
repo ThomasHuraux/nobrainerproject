@@ -1,5 +1,6 @@
 package fr.uhp.nobrain.plateform;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,14 +26,15 @@ public class MainMenuController {
 		view.getPlayButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				GameContext gc = new GameContext();
-				gc.start(0);
+				gc.start(60);
 				GameContainer container = new GameContainer(gc);
-				GameContainerView gcv = new GameContainerView(container);
-				GameContainerController gcc = new GameContainerController(container,gcv);
+//				GameContainerView gcv = new GameContainerView(container);
+//				GameContainerController gcc = new GameContainerController(container,gcv);
 				
 				JFrame frame = new JFrame("  Games ");
 				frame.setPreferredSize(new Dimension(800,600));
-				frame.setContentPane(gcv);
+				frame.getContentPane().add(gc.getPanel(), BorderLayout.CENTER);
+//				frame.setContentPane(gcv);
 				frame.setVisible(true);
 				frame.pack();
 			}
