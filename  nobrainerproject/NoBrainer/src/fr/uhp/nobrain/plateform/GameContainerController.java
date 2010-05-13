@@ -5,16 +5,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import fr.uhp.nobrain.games.GameContext;
+
 
 public class GameContainerController {
 	
-	private GameContainer model;
+	private GameContext context;
 	private GameContainerView view;
 	
-	public GameContainerController(final GameContainer m,final GameContainerView v){
-		this.model = m;
-		this.view = v;
-		
+	public GameContainerController(GameContext context){
+		this.context = context;
+
+		this.view = new GameContainerView(this);
+
 		ActionListener updatePerformer = new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				view.refresh();
@@ -23,6 +26,14 @@ public class GameContainerController {
 		
 		Timer refresh = new Timer(1000,updatePerformer);
 		refresh.start();
+	}
+	
+	public GameContext getGameContext() {
+		return context;
+	}
+	
+	public GameContainerView getView() {
+		return view;
 	}
 
 }

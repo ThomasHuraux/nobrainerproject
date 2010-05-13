@@ -20,6 +20,7 @@ public class MainMenuController {
 		view.getLogoutButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("logout");
+				System.exit(0);
 			}
 		});
 		
@@ -27,14 +28,12 @@ public class MainMenuController {
 			public void actionPerformed(ActionEvent e) {
 				GameContext gc = new GameContext();
 				gc.start(60);
-				GameContainer container = new GameContainer(gc);
-//				GameContainerView gcv = new GameContainerView(container);
-//				GameContainerController gcc = new GameContainerController(container,gcv);
+				GameContainerController gcc = new GameContainerController(gc);
 				
 				JFrame frame = new JFrame("  Games ");
 				frame.setPreferredSize(new Dimension(800,600));
+				frame.setContentPane(gcc.getView());
 				frame.getContentPane().add(gc.getPanel(), BorderLayout.CENTER);
-//				frame.setContentPane(gcv);
 				frame.setVisible(true);
 				frame.pack();
 			}

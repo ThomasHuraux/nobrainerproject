@@ -8,7 +8,7 @@ import fr.uhp.nobrain.tools.Observateur;
 
 
 public class Score extends Thread implements Observable, java.lang.Comparable<Score> {
-	private static final int REFRESH_DELAY = 2500;
+	private static final int REFRESH_DELAY = 5000;
 	private int score = 0;
 	private int level;
 	private String name;
@@ -23,8 +23,6 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	
 	public void run() {
 		while(run){
-			this.score += 10;
-			
 			this.updateObservateur();
 			
 			try {
@@ -53,7 +51,7 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	}
 
 	public void updateObservateur() {
-		String s = this.toString();
+		String s = Integer.toString(score);
 		for(Observateur obs : this.listObservateur )
 			obs.update(s);
 	}
@@ -86,7 +84,7 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	public int compareTo(Score other) {
 		 int n1 = other.getScore(); 
 	     int n2 = this.getScore(); 
-	     if (n1 > n2)  return -1; 
+	     if (n1 > n2)  return -1;
 	     else if(n1 == n2) return 0; 
 	     else return 1; 
 	}

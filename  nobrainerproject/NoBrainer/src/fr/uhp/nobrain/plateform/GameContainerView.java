@@ -11,15 +11,15 @@ import javax.swing.JPanel;
 public class GameContainerView extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private GameContainer model;
+	private GameContainerController control;
 	
 	private JPanel timer;
 	private JLabel score;
 	private JLabel name;
 	private JPanel games;
 	
-	public GameContainerView(GameContainer m){
-		this.model = m;
+	public GameContainerView(GameContainerController control){
+		this.control = control;
 		
 		setPreferredSize(new Dimension(800,600));
 		setLayout(new BorderLayout());
@@ -33,9 +33,10 @@ public class GameContainerView extends JPanel{
 		
 		refresh();
 		
-		games = model.getGameContext().getPanel();
-//		timer = model.getGameContext().getTimer().getView();
-		
+		games = control.getGameContext().getPanel();
+		timer = control.getGameContext().getTimer().getPanel();
+		score = control.getGameContext().getScoreLabel();
+
 		name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		name.setForeground(Color.white);
 		north.add(name);
@@ -53,8 +54,8 @@ public class GameContainerView extends JPanel{
 	}
 	
 	public void refresh(){
-		name.setText(model.getGameContext().getGameState().getGameName());
-		score.setText("Score : "+model.getGameContext().getScore());
+		name.setText(control.getGameContext().getGameName());
+		score.setText("Score : "+control.getGameContext().getScore());
 	}
 
 }

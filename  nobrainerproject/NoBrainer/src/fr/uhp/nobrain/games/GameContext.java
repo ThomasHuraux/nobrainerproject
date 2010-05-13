@@ -1,17 +1,18 @@
 package fr.uhp.nobrain.games;
 
-import java.awt.BorderLayout;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.uhp.nobrain.highscore.HighScore;
 import fr.uhp.nobrain.highscore.Score;
+import fr.uhp.nobrain.tools.TimerControl;
 
 
 public class GameContext extends Thread implements GameState, StateTransition {
 
 	private GameState gameState;
 	private GameStateLoader loader;
-	private Score currentScore;
+	private HighScore hs;
 	
 	private int level;
 	private int score;
@@ -21,7 +22,7 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		this.gameState = null;
 		this.loader = new GameStateLoader();
 		this.score = 0;
-		this.currentScore = new Score();
+		this.hs = new HighScore();
 		loader.load();
 	}
 
@@ -31,7 +32,6 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		if (! StateTransition.list.isEmpty()) {
 			changeToState(StateTransition.list.remove(0));
 	    	gameState.start(level);
-	    	currentScore.start();
 		}
     }
 
@@ -40,14 +40,17 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		
     	if(! StateTransition.list.isEmpty()){
     		start(level);
-    	} else exit();
+    	} else {
+    		exit();
+    		Score sc = new Score();
+    		sc.setScore(score);
+    		hs.addEntry(sc);
+    	}
     }
 	
 	@Override
 	public int exit(){
-		gameState.exit();
-		currentScore.exit();
-		
+		score += gameState.exit();		
 		return score;
 	}
 
@@ -63,25 +66,28 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		return gameState;
 	}
 
+	public JLabel getScoreLabel() {
+		return new JLabel(gameState.getScore()+"");
+	}
+	
+	@Override
 	public int getScore() {
-		return score;
+		return gameState.getScore();
 	}
 
 	@Override
 	public JPanel getPanel() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.add(currentScore.getPanel(), BorderLayout.NORTH);
-		panel.add(gameState.getPanel(),BorderLayout.CENTER);
-		
-		return panel;
+		return gameState.getPanel();
 	}
 
 	@Override
 	public String getGameName() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameState.getGameName();
 	}
 
+	@Override
+	public TimerControl getTimer() {
+		return gameState.getTimer();
+	}
 }
 
