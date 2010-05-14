@@ -56,7 +56,7 @@ public class TimerControl extends Thread implements TimerInterface {
 
 	public void updateObservateur() {
 		for(Observateur obs : this.listObservateur )
-			obs.update(this.toString());
+			obs.update(this);
 	}
 
 	public int getTimeRemaining() {

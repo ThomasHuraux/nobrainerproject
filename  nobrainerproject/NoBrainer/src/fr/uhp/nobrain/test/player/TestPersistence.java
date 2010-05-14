@@ -37,7 +37,7 @@ public class TestPersistence {
         for (Player o : l) {
             System.out.println(o.getFirstname());
         }
-        s.close();
+//        s.close();
     }
 
 }

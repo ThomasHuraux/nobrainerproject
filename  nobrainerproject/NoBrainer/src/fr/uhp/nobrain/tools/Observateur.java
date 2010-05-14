@@ -1,5 +1,5 @@
 package fr.uhp.nobrain.tools;
 
 public interface Observateur {
-	public void update(String s);
+	public void update(Object o);
 }

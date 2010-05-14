@@ -19,8 +19,8 @@ public class TimerView {
 		
 		this.control.addObservateur(new Observateur(){
 			@Override
-			public void update(String s) {
-				progress.setValue(Integer.valueOf(s));
+			public void update(Object o) {
+				progress.setValue(((TimerControl)o).getTimeRemaining());
 			}
 		});
 

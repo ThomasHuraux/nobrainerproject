@@ -19,8 +19,8 @@ public class ScoreView {
 		this.score = hs;
 
 		this.score.addObservateur(new Observateur(){
-			public void update(String o) {
-				label.setText(o);
+			public void update(Object o) {
+				label.setText(((Score)o).toString());
 			}
 		});
 		

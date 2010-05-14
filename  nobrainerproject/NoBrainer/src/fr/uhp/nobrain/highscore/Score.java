@@ -51,9 +51,9 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	}
 
 	public void updateObservateur() {
-		String s = Integer.toString(score);
+//		String s = Integer.toString(score);
 		for(Observateur obs : this.listObservateur )
-			obs.update(s);
+			obs.update(this);
 	}
 
 	public int getScore() {
@@ -91,6 +91,6 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 
 	@Override
 	public String toString() {
-		return "score = " + score;
+		return ""+score;
 	}	
 }
