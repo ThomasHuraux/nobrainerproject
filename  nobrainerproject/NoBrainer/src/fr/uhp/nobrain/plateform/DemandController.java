@@ -28,6 +28,11 @@ public class DemandController {
 			});
 		}
 		
+		view.getQuit().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				// Return to menu
+			}
+		});
 		
 	}
 

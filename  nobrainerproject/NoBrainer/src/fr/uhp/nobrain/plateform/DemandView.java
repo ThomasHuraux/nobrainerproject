@@ -1,5 +1,6 @@
 package fr.uhp.nobrain.plateform;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.swing.JScrollPane;
 public class DemandView {
 	
 	private JPanel panel;
+	private JButton quit;
 	private ArrayList<JLabel> name;
 	private ArrayList<JButton> accepts;
 	private ArrayList<JButton> ignores;
@@ -19,6 +21,7 @@ public class DemandView {
 	public DemandView(Demand demand){
 
 		name = new ArrayList<JLabel>();
+		quit = new JButton("Return");
 		accepts = new ArrayList<JButton>();
 		ignores = new ArrayList<JButton>();
 		
@@ -45,7 +48,11 @@ public class DemandView {
 		}
 		
 		jsp.add(inpan);
-		panel.add(jsp);
+		
+		panel.setLayout(new BorderLayout());
+		panel.add(new JLabel("They want be your friend :"),BorderLayout.NORTH);
+		panel.add(jsp,BorderLayout.CENTER);
+		panel.add(quit,BorderLayout.SOUTH);
 	}
 
 	public JPanel getPanel() {
@@ -63,5 +70,10 @@ public class DemandView {
 	public ArrayList<JButton> getIgnores() {
 		return ignores;
 	}
+
+	public JButton getQuit() {
+		return quit;
+	}
+	
 
 }
