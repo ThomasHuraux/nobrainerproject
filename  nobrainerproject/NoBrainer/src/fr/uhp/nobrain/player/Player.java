@@ -61,6 +61,11 @@ public class Player{
 
 	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
+	}
+
+	public boolean isFriend(Player p) {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 	
 }
