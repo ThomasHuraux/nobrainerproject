@@ -1,6 +1,9 @@
 package fr.uhp.nobrain.tools;
 
+import java.sql.*;
+
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -9,21 +12,30 @@ import org.hibernate.SessionFactory;
  * @author halaskaf
  */
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory;
+	private Session session;
+	private Statement st;
 
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
+	public HibernateUtil() throws Exception{
+		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+		session = sessionFactory.openSession();
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+		// Load the JDBC driver.
+		Class.forName("org.gjt.mm.mysql.Driver");
+		System.out.println("Driver Loaded.");
+		// Establish the connection to the database.
+		String url = "jdbc:mysql://localhost/NoBrainer";
+
+		Connection conn = DriverManager.getConnection(url, "root", "adminpwd");
+		System.out.println("Got Connection.");
+		st = conn.createStatement();
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public Statement getSt() {
+		return st;
+	}
+
 }

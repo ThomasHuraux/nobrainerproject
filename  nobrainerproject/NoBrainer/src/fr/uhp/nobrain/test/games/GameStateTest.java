@@ -3,66 +3,81 @@ package fr.uhp.nobrain.test.games;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import fr.uhp.nobrain.games.GameContext;
 import fr.uhp.nobrain.games.GameState;
-import fr.uhp.nobrain.games.GameStateMock;
+import fr.uhp.nobrain.games.StateTransition;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author labedan
- */
+
 public class GameStateTest {
 
+	int level = 0;
+	GameContext gc;
+	GameState instance;
+	
     @Before
     public void setUp() {
+    	gc = new GameContext();
+    	gc.start(level);
+    	instance = gc.getGameState();
     }
 
     @After
     public void tearDown() {
+    	if (instance != null) {
+    		instance.exit();
+    		instance = null;
+    	}
+    	if (gc != null) {
+    		gc.exit();
+    		gc = null;
+    	}
+    	StateTransition.list.clear();
     }
 
-    /**
-     * Test of start method, of class GameState.
-     */
     @Test
     public void testStart() {
-        System.out.println("start");
-        int level = 0;
-        GameState instance = new GameStateMock();
-//        int timeRemaining = instance.getTimeRemaining();
+        System.out.println("GameState - start");
         
-        instance.start();
+        setUp();
+
+        assertTrue(instance.getScore() == 0);
         
-        assertTrue(instance.getLevel() == level);
-//        assertTrue(instance.getTimeRemaining() == timeRemaining);
+        tearDown();
     }
 
-    /**
-     * Test of stop method, of class GameState.
-     */
+    @Test
+    public void testTimer() {
+        System.out.println("GameState - timer");
+        
+        setUp();
+        
+        assertNotNull(instance.getTimer());
+        
+        tearDown();
+    }
+    
+    @Test
+    public void testView() {
+    	System.out.println("GameState - view");
+        
+        setUp();
+        
+        assertNotNull(instance.getPanel());
+        
+        tearDown();
+    }
+    
     @Test
     public void testStop() {
-        System.out.println("stop");
-        GameState instance = new GameStateMock();
-        int expResult = 10;
+        System.out.println("GameState - stop");
+        setUp();
         
-        int score = instance.stop();
+        int score = instance.exit();
         
-        assertEquals(expResult, score);
+        assertEquals(score, 0);
+        
+        tearDown();
     }
-
-    /**
-     * Test of setTimeRemaining method, of class GameState.
-     */
-    @Test
-    public void testSetTimeRemaining() {
-        System.out.println("setTimeRemaining");
-        int timeRemaining = 0;
-        GameState instance = new GameStateMock();
-        
-        instance.setTimeRemaining(timeRemaining);
-        
-        assertEquals(timeRemaining,instance.getTimeRemaining());
-    }
-
 }

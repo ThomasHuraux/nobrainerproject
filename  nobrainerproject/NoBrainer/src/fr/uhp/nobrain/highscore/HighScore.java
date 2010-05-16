@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class HighScore extends HSService{
 	
-	private ArrayList<Score> scores;
+	private ArrayList<ScoreControl> scores;
 
 	@Override
-	public void addEntry(Score s) {
+	public void addEntry(ScoreControl s) {
 		scores.add(s);
 	}
 

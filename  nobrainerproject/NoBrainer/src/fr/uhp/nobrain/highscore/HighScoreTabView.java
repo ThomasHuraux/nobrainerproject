@@ -11,11 +11,11 @@ public class HighScoreTabView extends HighScoreView {
 	private static final String[] titles = {"Rank","Name","Score"};
 	private JTable table;
 	
-	public HighScoreTabView(ArrayList<Score> scores,int level) {
+	public HighScoreTabView(ArrayList<ScoreControl> scores,int level) {
 		
-		ArrayList<Score> filter = new ArrayList<Score>();
-		for(Score s : scores)
-			if(s.getLevel() == level)
+		ArrayList<ScoreControl> filter = new ArrayList<ScoreControl>();
+		for(ScoreControl s : scores)
+			if(s.getScoreModel().getLevel() == level)
 				filter.add(s);
 		
 		Collections.sort(filter);
@@ -23,7 +23,7 @@ public class HighScoreTabView extends HighScoreView {
 		Object[][] data = new Object[scores.size()][titles.length];
 		for(int i = 0; i<filter.size(); i++){
 			data[i][0] = i;
-			data[i][1] = filter.get(i).getPlayerName();
+			data[i][1] = filter.get(i).getScoreModel().getName();
 			data[i][2] = filter.get(i).getScore();
 		}
 		table = new JTable(data,titles);

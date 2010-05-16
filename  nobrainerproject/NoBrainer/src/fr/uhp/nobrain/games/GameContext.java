@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.uhp.nobrain.highscore.HighScore;
-import fr.uhp.nobrain.highscore.Score;
+import fr.uhp.nobrain.highscore.ScoreControl;
 import fr.uhp.nobrain.tools.TimerControl;
 
 
@@ -42,7 +42,7 @@ public class GameContext extends Thread implements GameState, StateTransition {
     		start(level);
     	} else {
     		exit();
-    		Score sc = new Score();
+    		ScoreControl sc = new ScoreControl();
     		sc.setScore(score);
     		hs.addEntry(sc);
     	}

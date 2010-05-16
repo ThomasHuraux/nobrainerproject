@@ -5,7 +5,6 @@ import javax.persistence.*;
 import fr.uhp.nobrain.player.Player;
 
 @Entity
-
 @IdClass(Invitation.class)
 public class Invitation {
 	
@@ -15,7 +14,7 @@ public class Invitation {
 	private Player playerTwo;
 	
 	@Id
-	@Column(name = "PlayerOne", insertable = false, updatable = false)
+	@Column(name="PlayerOne",insertable=false,updatable=false)
 	public int getPlayerOneId() {
 		return playerOneId;
 	}
@@ -25,13 +24,13 @@ public class Invitation {
 	}
 	
 	@Id
-	@Column(name = "PlayerTwo", insertable = false, updatable = false)
+	@Column(name="PlayerTwo",insertable=false,updatable=false)
 	public int getPlayerTwoId() {
 		return playerTwoId;
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "PlayerOne")
+	@JoinColumn(name="PlayerOne")
 	public Player getPlayerOne() {
 		return playerOne;
 	}
@@ -41,7 +40,7 @@ public class Invitation {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "PlayerTwo")
+	@JoinColumn(name="PlayerTwo")
 	public Player getPlayerTwo() {
 		return playerTwo;
 	}

@@ -13,10 +13,10 @@ public class Demand {
 	private Player current;
 	private List<Invitation> invitations;
 	
-	public Demand(Player c){
+	public Demand(Player c) throws Exception{
 		current = c;
-		
-        Session s = HibernateUtil.getSessionFactory().openSession();
+		HibernateUtil hibernateUtil = new HibernateUtil();
+        Session s = hibernateUtil.getSession();
         s.beginTransaction();
         Query q = s.createQuery("from Invitation");
         invitations = q.list();

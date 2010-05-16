@@ -9,35 +9,57 @@ import fr.uhp.nobrain.player.Player;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class TestPersistence {
-	
-    public static void main(String[] args) {
-    	
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        s.beginTransaction();
-        
-        
-        Player player1 = new Player();
-        player1.setFirstname("Thomas");
-        player1.setLastname("Huraux");
-        player1.setNickname("toto");
-        player1.setPassword("ght1pca3");
-        
-        Player player2 = new Player();
-        player2.setFirstname("Christophe");
-        player2.setLastname("Labedan");
-        player2.setNickname("tof");
-        player2.setPassword("ght1pca3");
-        
-        s.save(player1);
-        s.save(player2);
-        
-        s.getTransaction().commit();
-        Query q = s.createQuery("from Player");
-        List<Player> l = q.list();
-        for (Player o : l) {
-            System.out.println(o.getFirstname());
-        }
-//        s.close();
-    }
+
+	private static boolean persist(Player player) throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+
+		boolean persist = false;
+		if (! alreadyExists(player)) {
+			s.save(player);
+			persist = true;
+			System.out.println("Operation reussie !");
+		}
+		else System.out.println("Impossible d'enregistrer " + player.getName() 
+				+ " car il existe deja dans la table");
+
+		s.flush();
+		s.getTransaction().commit();
+		s.close();
+		
+		return persist;
+	}
+
+	@SuppressWarnings("unchecked")
+	private static boolean alreadyExists(Player player) throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+		
+		boolean exists = false;
+		Query q = s.createQuery("from Player");
+		List<Player> l = q.list();
+		
+		for (Player p : l) {
+			if (player.equals(p)) {
+				exists = true;
+				return exists;
+			}
+		}
+
+		s.close();
+		
+		return exists;
+	}
+
+	public static void main(String[] args) throws Exception{ 
+		Player player1 = new Player("toto", "ght1pca3");
+		Player player2 = new Player("tof", "ght1pca3");
+
+		persist(player1);
+		persist(player2);
+
+	}
 
 }

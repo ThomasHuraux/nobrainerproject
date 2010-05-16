@@ -35,7 +35,7 @@ public class GameContainerView extends JPanel{
 		
 		games = control.getGameContext().getPanel();
 		timer = control.getGameContext().getTimer().getPanel();
-		score = control.getGameContext().getScoreLabel();
+		score = new JLabel(control.getGameContext().getScore()+"");
 
 		name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		name.setForeground(Color.white);

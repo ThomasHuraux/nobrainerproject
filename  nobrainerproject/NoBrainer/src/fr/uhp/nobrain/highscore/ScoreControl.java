@@ -1,24 +1,26 @@
 package fr.uhp.nobrain.highscore;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import fr.uhp.nobrain.tools.Observable;
 import fr.uhp.nobrain.tools.Observateur;
 
 
-public class Score extends Thread implements Observable, java.lang.Comparable<Score> {
+public class ScoreControl extends Thread implements Observable, java.lang.Comparable<ScoreControl> {
 	private static final int REFRESH_DELAY = 5000;
-	private int score = 0;
-	private int level;
-	private String name;
+	private ScoreModel scoreModel;
 	private boolean run = true;
 	private ArrayList<Observateur> listObservateur = new ArrayList<Observateur>();
-	private ScoreView view;
 	
-	public Score(){
+	
+	
+	public ScoreControl() {
 		super();
-		view = new ScoreView(this);
+		this.scoreModel = new ScoreModel();
+	}
+
+	public ScoreControl(ScoreModel sm){
+		super();
+		this.scoreModel = sm;
 	}
 	
 	public void run() {
@@ -37,11 +39,7 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	public void exit() {
 		this.run = false;
 	}
-	
-	public JPanel getPanel() {
-		return view.getPanel();
-	}
-	
+
 	public void addObservateur(Observateur obs) {
 		this.listObservateur.add(obs);
 	}
@@ -51,39 +49,30 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 	}
 
 	public void updateObservateur() {
-//		String s = Integer.toString(score);
 		for(Observateur obs : this.listObservateur )
 			obs.update(this);
 	}
 
+	public ScoreModel getScoreModel() {
+		return scoreModel;
+	}
+
+	public void setScoreModel(ScoreModel sm) {
+		this.scoreModel = sm;
+	}	
+	
 	public int getScore() {
-		return score;
+		return this.scoreModel.getScore();
 	}
 	
 	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	public int getLevel() {
-		return level;
-	}
-	
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	public String getPlayerName() {
-		return name;
-	}
-	
-	public void setPlayerName(String name) {
-		this.name = name;
+		this.scoreModel.setScore(score);
 	}
 
 	@Override
-	public int compareTo(Score other) {
-		 int n1 = other.getScore(); 
-	     int n2 = this.getScore(); 
+	public int compareTo(ScoreControl other) {
+		 int n1 = other.getScoreModel().getScore(); 
+	     int n2 = this.scoreModel.getScore(); 
 	     if (n1 > n2)  return -1;
 	     else if(n1 == n2) return 0; 
 	     else return 1; 
@@ -91,6 +80,6 @@ public class Score extends Thread implements Observable, java.lang.Comparable<Sc
 
 	@Override
 	public String toString() {
-		return ""+score;
-	}	
+		return ""+this.scoreModel.getScore();
+	}
 }
