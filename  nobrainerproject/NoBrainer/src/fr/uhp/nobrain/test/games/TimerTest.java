@@ -11,7 +11,7 @@ import fr.uhp.nobrain.games.StateTransition;
 
 public class TimerTest {
 
-	private int level = 0;
+	private int level = 10;
 	private GameContext instance;
 	
 	@Before
@@ -21,8 +21,10 @@ public class TimerTest {
 	
 	@After
 	public void tearDown() {
-		instance.exit();
-		instance = null;
+		if (instance != null) {
+			instance.exit();
+			instance = null;
+		}
 		StateTransition.list.clear();
 	}
 	
@@ -64,8 +66,8 @@ public class TimerTest {
 	public void testStop() {
 		System.out.println("Timer - stop");
 		setUp();
-		instance.exit();
-		assertNull(instance.getTimer());
+		instance.start(level);
+		assertEquals(instance.getTimer().exit(),-1);
 		tearDown();
 	}
 }

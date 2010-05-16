@@ -18,7 +18,7 @@ public class PlayerInviteController {
 			final int id = i;
 			view.getInvite().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					Invite invitation = new Invite(model.getCurrent().getPlayerId(),model.getPlayers().get(id).getPlayerId());	
+					Invite invitation = new Invite(model.getCurrent().getId(),model.getPlayers().get(id).getId());	
 					invitation.execute();
 				}
 			});

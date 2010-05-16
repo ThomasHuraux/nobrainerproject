@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import fr.uhp.nobrain.friends.FriendsServer;
 import fr.uhp.nobrain.player.Player;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
@@ -24,6 +25,29 @@ public class TestPersistence {
 		else System.out.println("Impossible d'enregistrer " + player.getName() 
 				+ " car il existe deja dans la table");
 
+		s.flush();
+		s.getTransaction().commit();
+		s.close();
+		
+		return persist;
+	}
+	
+	private static boolean persist(FriendsServer fs) throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+
+		boolean persist = false;
+//		if (! alreadyExists(player)) {
+//			s.save(player);
+//			persist = true;
+//			System.out.println("Operation reussie !");
+//		}
+//		else System.out.println("Impossible d'enregistrer " + player.getName() 
+//				+ " car il existe deja dans la table");
+
+		s.save(fs);
+		
 		s.flush();
 		s.getTransaction().commit();
 		s.close();
@@ -57,8 +81,8 @@ public class TestPersistence {
 		Player player1 = new Player("toto", "ght1pca3");
 		Player player2 = new Player("tof", "ght1pca3");
 
-		persist(player1);
-		persist(player2);
+		FriendsServer fs = new FriendsServer(player1, player2);
+		persist(fs);
 
 	}
 

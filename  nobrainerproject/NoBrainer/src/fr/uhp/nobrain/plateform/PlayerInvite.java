@@ -13,10 +13,10 @@ public class PlayerInvite {
 	private Player current;
 	private List<Player> players;
 	
-	public PlayerInvite(Player c){
+	public PlayerInvite(Player c) throws Exception{
 		current = c;
-		
-        Session s = HibernateUtil.getSessionFactory().openSession();
+		HibernateUtil hibernateUtil = new HibernateUtil();
+        Session s = hibernateUtil.getSession();
         s.beginTransaction();
         Query q = s.createQuery("from Player");
         players = q.list();
@@ -27,7 +27,7 @@ public class PlayerInvite {
 	
 	private void filter(){
 		for(Player p : players){
-			if(current.getPlayerId() == p.getPlayerId() || current.isFriend(p))
+			if(current.getId() == p.getId() || current.isFriend(p))
 				players.remove(p);
 		}
 	}

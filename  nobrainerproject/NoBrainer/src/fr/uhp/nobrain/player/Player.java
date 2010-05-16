@@ -2,13 +2,10 @@ package fr.uhp.nobrain.player;
 
 import java.security.MessageDigest;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="Player")
 public class Player implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1073256708139002061L;
@@ -24,7 +21,8 @@ public class Player implements java.io.Serializable {
 		this.pwd = sha1(pwd);
 	}
 	
-	@Id
+	@Id @OneToOne
+	@JoinColumn(name = "player")
 	@Column(name = "id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
@@ -51,6 +49,10 @@ public class Player implements java.io.Serializable {
 
 	public void setPwd(String pwd) {
 		this.pwd = sha1(pwd);
+	}
+	
+	public boolean isFriend(Player player) {
+		return false;
 	}
 
 	@Override

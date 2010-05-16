@@ -28,7 +28,7 @@ public class PlayerInviteView {
 		
 		boolean b = false;
 		for(int i = 0; i<pi.getPlayers().size();i++){
-			name.add(new JLabel(pi.getPlayers().get(i).getNickname()));
+			name.add(new JLabel(pi.getPlayers().get(i).getName()));
 			invite.add(new JButton("Invite"));
 			
 			JPanel line = new JPanel();
