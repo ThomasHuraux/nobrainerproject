@@ -2,19 +2,47 @@ package fr.uhp.nobrain.friends;
 
 import javax.persistence.*;
 
+import fr.uhp.nobrain.player.PersistTools;
 import fr.uhp.nobrain.player.Player;
 
 @Entity
 @IdClass(Invitation.class)
-public class Invitation {
+public class Invitation implements java.io.Serializable {
 	
+	private static final long serialVersionUID = 2939295636417063657L;
+	private int id;
 	private int playerOneId;
 	private int playerTwoId;
-	private Player playerOne;
-	private Player playerTwo;
+	
+	public Invitation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Invitation(Player player1, Player player2) {
+		super();
+		this.playerOneId = player1.getId();
+		this.playerTwoId = player2.getId();
+	}
+
+	public Invitation(int playerOneId, int playerTwoId) {
+		super();
+		this.playerOneId = playerOneId;
+		this.playerTwoId = playerTwoId;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public int getInvitationId() {
+		return id;
+	}
+	
+	public void setInvitationId(int id) {
+		this.id = id;
+	}
 	
 	@Id
-	@Column(name="PlayerOne",insertable=false,updatable=false)
+	@Column(name="playerOneId",insertable=false,updatable=false)
 	public int getPlayerOneId() {
 		return playerOneId;
 	}
@@ -24,32 +52,25 @@ public class Invitation {
 	}
 	
 	@Id
-	@Column(name="PlayerTwo",insertable=false,updatable=false)
+	@Column(name="playerTwoId",insertable=false,updatable=false)
 	public int getPlayerTwoId() {
 		return playerTwoId;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="PlayerOne")
-	public Player getPlayerOne() {
-		return playerOne;
-	}
-
-	public void setPlayerOne(Player playerOne) {
-		this.playerOne = playerOne;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="PlayerTwo")
-	public Player getPlayerTwo() {
-		return playerTwo;
-	}
-
-	public void setPlayerTwo(Player playerTwo) {
-		this.playerTwo = playerTwo;
-	}
-
 	public void setPlayerTwoId(int playerTwoId) {
 		this.playerTwoId = playerTwoId;
+	}
+	
+	@Override
+	public boolean equals(Object p) {
+		if (!(p instanceof Invitation)) return false;
+		if (this.getPlayerOneId()==((Invitation)p).getPlayerOneId() && this.getPlayerTwoId() ==((Invitation)p).getPlayerTwoId())
+			return true;
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return ((Integer)playerOneId).hashCode() ^ ((Integer)playerTwoId).hashCode();
 	}
 }

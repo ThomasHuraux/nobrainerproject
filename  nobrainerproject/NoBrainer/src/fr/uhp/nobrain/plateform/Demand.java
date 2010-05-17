@@ -13,6 +13,7 @@ public class Demand {
 	private Player current;
 	private List<Invitation> invitations;
 	
+	@SuppressWarnings("unchecked")
 	public Demand(Player c) throws Exception{
 		current = c;
 		HibernateUtil hibernateUtil = new HibernateUtil();
@@ -27,8 +28,8 @@ public class Demand {
 	
 	private void filter(){
 		for(Invitation i : invitations){
-			if(current.getPlayerId() != i.getPlayerTwo().getPlayId())
-				players.remove(p);
+			if(current.getId() != i.getPlayerTwoId())
+				invitations.remove(i);
 		}
 	}
 	
@@ -36,7 +37,7 @@ public class Demand {
 		return current;
 	}
 
-	public List<Player> getPlayers() {
-		return players;
+	public List<Invitation> getInvitations() {
+		return invitations;
 	}
 }
