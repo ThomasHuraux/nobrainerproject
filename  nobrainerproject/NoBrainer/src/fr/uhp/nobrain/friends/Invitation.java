@@ -2,7 +2,6 @@ package fr.uhp.nobrain.friends;
 
 import javax.persistence.*;
 
-import fr.uhp.nobrain.player.PersistTools;
 import fr.uhp.nobrain.player.Player;
 
 @Entity
@@ -64,7 +63,8 @@ public class Invitation implements java.io.Serializable {
 	@Override
 	public boolean equals(Object p) {
 		if (!(p instanceof Invitation)) return false;
-		if (this.getPlayerOneId()==((Invitation)p).getPlayerOneId() && this.getPlayerTwoId() ==((Invitation)p).getPlayerTwoId())
+		if (this.getPlayerOneId()==((Invitation)p).getPlayerOneId() && this.getPlayerTwoId() ==((Invitation)p).getPlayerTwoId()
+				|| this.getPlayerOneId()==((Invitation)p).getPlayerTwoId() && this.getPlayerTwoId() ==((Invitation)p).getPlayerOneId())
 			return true;
 		return false;
 	}

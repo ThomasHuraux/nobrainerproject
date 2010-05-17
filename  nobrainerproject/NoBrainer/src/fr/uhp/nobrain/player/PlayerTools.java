@@ -1,7 +1,6 @@
 package fr.uhp.nobrain.player;
 
 import java.security.MessageDigest;
-import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,26 +8,37 @@ import org.hibernate.Session;
 
 import fr.uhp.nobrain.tools.HibernateUtil;
 
-public class PersistTools {
+public class PlayerTools {
 
 	@SuppressWarnings("unchecked")
-	public static boolean persist(Player player) throws Exception {
-		return persist((Collection<Player>)player); 
+	public static int select(Player player) throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+		
+		Query q = s.createQuery("from Player");
+		List<Player> l = q.list();
+		
+		for (Player p : l)
+			if (player.equals(p))
+				return p.getId();
+
+		s.close();
+		return -1;
 	}
-	public static boolean persist(Collection<Player> c) throws Exception {
+	
+	public static boolean persist(Player player) throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
 
 		boolean persist = false;
-		for (Player player : c)
-			if (! alreadyExists(player)) {
-				s.save(player);
-				persist = true;
-				System.out.println("\n>>>>>>>>>>>>>>>>>>>\n" + "Operation reussie !" + "<<<<<<<<<<<<<<<<<<<\n");
-			}
-			else System.out.println("Impossible d'enregistrer " + player.getName() 
-					+ " car il existe deja dans la table");
+		if (! alreadyExists(player)) {
+			s.save(player);
+			persist = true;
+		}
+		else System.out.println("Impossible d'enregistrer " + player.getName() 
+				+ " car il existe deja dans la table");
 
 		s.flush();
 		s.getTransaction().commit();

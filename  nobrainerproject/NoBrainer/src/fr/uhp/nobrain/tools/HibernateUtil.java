@@ -21,12 +21,10 @@ public class HibernateUtil {
 
 		// Load the JDBC driver.
 		Class.forName("org.gjt.mm.mysql.Driver");
-		System.out.println("Driver Loaded.");
 		// Establish the connection to the database.
 		String url = "jdbc:mysql://localhost/NoBrainer";
 
 		Connection conn = DriverManager.getConnection(url, "root", "adminpwd");
-		System.out.println("Got Connection.");
 		st = conn.createStatement();
 	}
 

@@ -23,7 +23,7 @@ public class HighScoreTabView extends HighScoreView {
 		Object[][] data = new Object[scores.size()][titles.length];
 		for(int i = 0; i<filter.size(); i++){
 			data[i][0] = i;
-			data[i][1] = filter.get(i).getScoreModel().getName();
+			data[i][1] = filter.get(i).getScoreModel().getPlayerId();
 			data[i][2] = filter.get(i).getScore();
 		}
 		table = new JTable(data,titles);
