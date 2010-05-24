@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Lun 17 Mai 2010 à 22:46
+-- Généré le : Lun 24 Mai 2010 à 18:18
 -- Version du serveur: 5.1.41
 -- Version de PHP: 5.3.2-1ubuntu4.1
 
@@ -18,8 +18,24 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Base de données: `NoBrainer`
 --
-CREATE DATABASE `NoBrainer` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `NoBrainer`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Friends`
+--
+
+CREATE TABLE IF NOT EXISTS `Friends` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerOneId` int(11) NOT NULL,
+  `playerTwoId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `Friends`
+--
+
 
 -- --------------------------------------------------------
 
@@ -73,12 +89,9 @@ CREATE TABLE IF NOT EXISTS `Player` (
   `name` varchar(10) NOT NULL,
   `pwd` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
 
 --
 -- Contenu de la table `Player`
 --
 
-INSERT INTO `Player` (`id`, `name`, `pwd`) VALUES
-(5, 'toto', 'df7c723782538f401fc57e02e40fba75e05ddff6'),
-(6, 'tof', 'df7c723782538f401fc57e02e40fba75e05ddff6');

@@ -11,7 +11,7 @@ import fr.uhp.nobrain.player.Player;
 
 @Entity
 @Table(name="HighScore")
-public class ScoreModel implements java.io.Serializable {
+public class Score implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1596945168358558464L;
 	private int scoreId;
@@ -19,23 +19,23 @@ public class ScoreModel implements java.io.Serializable {
 	private int level;
 	private int playerId;
 	
-	public ScoreModel() {
+	public Score() {
 		super();
-		this.score = -1;
-		this.level = -1;
+		this.score = 0;
+		this.level = 0;
 		this.playerId = -1;
 	}
 
-	public ScoreModel(int level, Player player) {
+	public Score(int level, Player player) {
 		super();
-		this.score = -1;
+		this.score = 0;
 		this.level = level;
 		this.playerId = player.getId();
 	}
 
-	public ScoreModel(int level, int playerId) {
+	public Score(int level, int playerId) {
 		super();
-		this.score = -1;
+		this.score = 0;
 		this.level = level;
 		this.playerId = playerId;
 	}
@@ -81,10 +81,10 @@ public class ScoreModel implements java.io.Serializable {
 	
 	@Override
 	public boolean equals(Object p) {
-		if (!(p instanceof ScoreModel)) return false;
-		if (this.level==((ScoreModel)p).getLevel()
-				&& this.playerId ==((ScoreModel)p).getPlayerId()
-				&& this.score == ((ScoreModel)p).getScore()
+		if (!(p instanceof Score)) return false;
+		if (this.level==((Score)p).getLevel()
+				&& this.playerId ==((Score)p).getPlayerId()
+				&& this.score == ((Score)p).getScore()
 				)
 			return true;
 		return false;

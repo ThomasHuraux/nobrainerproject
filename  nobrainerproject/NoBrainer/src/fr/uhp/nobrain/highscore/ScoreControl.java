@@ -7,7 +7,7 @@ import fr.uhp.nobrain.tools.Observateur;
 
 public class ScoreControl extends Thread implements Observable, java.lang.Comparable<ScoreControl> {
 	private static final int REFRESH_DELAY = 5000;
-	private ScoreModel scoreModel;
+	private Score scoreModel;
 	private boolean run = true;
 	private ArrayList<Observateur> listObservateur = new ArrayList<Observateur>();
 	
@@ -15,10 +15,10 @@ public class ScoreControl extends Thread implements Observable, java.lang.Compar
 	
 	public ScoreControl() {
 		super();
-		this.scoreModel = new ScoreModel();
+		this.scoreModel = new Score();
 	}
 
-	public ScoreControl(ScoreModel sm){
+	public ScoreControl(Score sm){
 		super();
 		this.scoreModel = sm;
 	}
@@ -53,11 +53,11 @@ public class ScoreControl extends Thread implements Observable, java.lang.Compar
 			obs.update(this);
 	}
 
-	public ScoreModel getScoreModel() {
+	public Score getScoreModel() {
 		return scoreModel;
 	}
 
-	public void setScoreModel(ScoreModel sm) {
+	public void setScoreModel(Score sm) {
 		this.scoreModel = sm;
 	}	
 	
