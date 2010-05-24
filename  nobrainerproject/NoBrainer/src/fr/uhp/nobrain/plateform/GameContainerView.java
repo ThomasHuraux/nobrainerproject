@@ -4,22 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GameContainerView extends JPanel{
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class GameContainerView extends JPanel implements View{
 
 	private static final long serialVersionUID = 1L;
-	private GameContainerController control;
+	private GameContainer model;
 	
 	private JPanel timer;
 	private JLabel score;
 	private JLabel name;
 	private JPanel games;
 	
-	public GameContainerView(GameContainerController control){
-		this.control = control;
+	public void initialize(Model m){
+		this.model = (GameContainer) m;
 		
 		setPreferredSize(new Dimension(800,600));
 		setLayout(new BorderLayout());
@@ -31,11 +35,9 @@ public class GameContainerView extends JPanel{
 		name = new JLabel();
 		score = new JLabel();
 		
-		refresh();
-		
-		games = control.getGameContext().getPanel();
-		timer = control.getGameContext().getTimer().getPanel();
-		score = new JLabel(control.getGameContext().getScore()+"");
+		games = model.getGameContext().getPanel();
+		timer = model.getGameContext().getTimer().getView();
+		score = new JLabel(model.getGameContext().getScore()+"");
 
 		name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		name.setForeground(Color.white);
@@ -50,12 +52,22 @@ public class GameContainerView extends JPanel{
 		add(timer,BorderLayout.SOUTH);
 		add(north,BorderLayout.NORTH);
 		add(games,BorderLayout.CENTER);
+		
+		model.attach(this);
+		makeController();
 	
 	}
-	
-	public void refresh(){
-		name.setText(control.getGameContext().getGameName());
-		score.setText("Score : "+control.getGameContext().getScore());
+
+	@Override
+	public void makeController() {
+		GameContainerController gcc = new GameContainerController();
+		gcc.initialize(model, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		name.setText(((GameContainer)o).getGameContext().getGameName());
+		score.setText("Score : "+((GameContainer)o).getGameContext().getScore());
 	}
 
 }

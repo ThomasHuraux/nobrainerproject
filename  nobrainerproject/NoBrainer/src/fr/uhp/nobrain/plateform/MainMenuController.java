@@ -4,51 +4,50 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JFrame;
 
 import fr.uhp.nobrain.games.GameContext;
+import fr.uhp.nobrain.mvc.Controller;
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.Switcher;
+import fr.uhp.nobrain.mvc.View;
 
-public class MainMenuController {
+public class MainMenuController implements Controller{
 
-	@SuppressWarnings("unused")
-	private MainMenuView view;
-	
-	public MainMenuController(MainMenuView view) {
-		this.view = view;
-		
-		view.getLogoutButton().addActionListener(new ActionListener(){
+
+	@Override
+	public void initialize(Model model, View view) {
+		((MainMenuView) view).getLogoutButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("logout");
 				System.exit(0);
 			}
 		});
 		
-		view.getPlayButton().addActionListener(new ActionListener(){
+		((MainMenuView) view).getPlayButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				GameContext gc = new GameContext();
-				gc.start(60);
-				GameContainerController gcc = new GameContainerController(gc);
-				
-				JFrame frame = new JFrame("  Games ");
-				frame.setPreferredSize(new Dimension(800,600));
-				frame.setContentPane(gcc.getView());
-				frame.getContentPane().add(gc.getPanel(), BorderLayout.CENTER);
-				frame.setVisible(true);
-				frame.pack();
+				LevelChooser lc = new LevelChooser();
+				Switcher.change(lc);
 			}
 		});
 		
-		view.getStatsButton().addActionListener(new ActionListener(){
+		((MainMenuView) view).getStatsButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("stats");
 			}
 		});
 		
-		view.getFriendsButton().addActionListener(new ActionListener(){
+		((MainMenuView) view).getFriendsButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("friends");
 			}
 		});
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
 	}
 }

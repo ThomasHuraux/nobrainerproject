@@ -2,38 +2,33 @@ package fr.uhp.nobrain.plateform;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.Timer;
 
-import fr.uhp.nobrain.games.GameContext;
+import fr.uhp.nobrain.mvc.Controller;
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
 
 
-public class GameContainerController {
+public class GameContainerController implements Controller{
 	
-	private GameContext context;
-	private GameContainerView view;
+	public void initialize(final Model model, final View view) {
 	
-	public GameContainerController(GameContext context){
-		this.context = context;
-
-		this.view = new GameContainerView(this);
-
 		ActionListener updatePerformer = new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
-				view.refresh();
+				((GameContainerView)view).update((Observable) model,null);
 			}
 		};
 		
 		Timer refresh = new Timer(1000,updatePerformer);
 		refresh.start();
 	}
-	
-	public GameContext getGameContext() {
-		return context;
-	}
-	
-	public GameContainerView getView() {
-		return view;
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

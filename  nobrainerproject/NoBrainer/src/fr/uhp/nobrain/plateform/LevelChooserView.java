@@ -1,13 +1,17 @@
 package fr.uhp.nobrain.plateform;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class LevelChooserView extends JPanel{
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class LevelChooserView extends JPanel implements View{
 
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +19,7 @@ public class LevelChooserView extends JPanel{
 	private JButton medium;
 	private JButton hard;
 	
-	public LevelChooserView(){
+	public void initialize(Model model){
 		
 		easy = new JButton("EASY");
 		medium = new JButton("MEDIUM");
@@ -28,8 +32,10 @@ public class LevelChooserView extends JPanel{
 		buttons.add(hard);
 		
 		setLayout(new BorderLayout());
-		add(new JLabel("Choose a difficulty :"),BorderLayout.CENTER);
-		add(buttons,BorderLayout.SOUTH);
+		add(buttons,BorderLayout.CENTER);
+		
+		model.attach(this);
+		makeController();
 	}
 
 	public JButton getEasy() {
@@ -42,5 +48,17 @@ public class LevelChooserView extends JPanel{
 
 	public JButton getHard() {
 		return hard;
+	}
+
+	@Override
+	public void makeController() {
+		LevelChooserController lcc = new LevelChooserController();
+		lcc.initialize(null, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

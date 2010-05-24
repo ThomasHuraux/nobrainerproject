@@ -1,2 +1,2 @@
-games/GameStateMock.jar	GameStateMock
-games/GameStateMock2.jar	GameStateMock2
+games/GameLetter.jar	GameLetter
+games/GameNumber.jar	GameNumber

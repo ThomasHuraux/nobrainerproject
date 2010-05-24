@@ -3,27 +3,32 @@ package fr.uhp.nobrain.plateform;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainMenuView extends JPanel{
-	
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class MainMenuView extends JPanel implements View{
+
 	private static final long serialVersionUID = 1L;
 	
-	@SuppressWarnings("unused")
-	private MainMenu model;
-	
+	private Model model;
+
 	private JLabel logo;
+
 	private JButton logoutButton;
 	private JButton statsButton;
 	private JButton friendsButton;
 	private JButton playButton;
+
 	
-	public MainMenuView(MainMenu model){
-		
+	public void initialize(Model model){
+
 		this.model = model;
 		
 		logoutButton = new JButton("Logout");
@@ -38,13 +43,17 @@ public class MainMenuView extends JPanel{
 		buttons.add(friendsButton);
 		buttons.add(logoutButton);
 		
-		String imgPath = model.getLogoPath();
+		String imgPath = ((MainMenu) model).getLogoPath();
 		logo = new JLabel(new ImageIcon(imgPath));
-		//logo.setPreferredSize(new Dimension(302,323));
+		
+		setPreferredSize(new Dimension(302,483));
 		
 		setLayout(new BorderLayout());
 		add(logo,BorderLayout.CENTER);
 		add(buttons,BorderLayout.SOUTH);
+
+		model.attach(this);
+		makeController();
 	}
 
 	public JLabel getLogo() {
@@ -66,5 +75,17 @@ public class MainMenuView extends JPanel{
 	public JButton getPlayButton() {
 		return playButton;
 	}
+
+	public void makeController() {
+		MainMenuController mmc = new MainMenuController();
+		mmc.initialize(model, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

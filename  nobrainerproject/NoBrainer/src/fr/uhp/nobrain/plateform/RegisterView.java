@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class RegisterView extends JPanel{
@@ -15,8 +16,8 @@ public class RegisterView extends JPanel{
 	private JTextField firstname;
 	private JTextField nickname;
 	private JTextField date;
-	private JTextField pass;
-	private JTextField confirm;
+	private JPasswordField pass;
+	private JPasswordField confirm;
 	private JButton ok;
 	
 	
@@ -26,8 +27,8 @@ public class RegisterView extends JPanel{
 		firstname = new JTextField();
 		nickname = new JTextField();
 		date = new JTextField();
-		pass = new JTextField();
-		confirm = new JTextField();
+		pass = new JPasswordField();
+		confirm = new JPasswordField();
 		
 		ok = new JButton("OK");
 		

@@ -42,7 +42,7 @@ public class TimerTest {
 		System.out.println("Timer - view");
 		setUp();
 		instance.start(level);
-		assertNotNull(instance.getTimer().getPanel());
+		assertNotNull(instance.getTimer().getView());
 		tearDown();
 	}
 	

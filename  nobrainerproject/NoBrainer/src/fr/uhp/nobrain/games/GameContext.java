@@ -3,16 +3,15 @@ package fr.uhp.nobrain.games;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import fr.uhp.nobrain.highscore.HighScore;
 import fr.uhp.nobrain.highscore.ScoreControl;
-import fr.uhp.nobrain.tools.TimerControl;
+import fr.uhp.nobrain.timer.GameTimer;
 
 
 public class GameContext extends Thread implements GameState, StateTransition {
 
 	private GameState gameState;
 	private GameStateLoader loader;
-	private HighScore hs;
+	private GameTimer timer;
 	
 	private int level;
 	private int score;
@@ -22,7 +21,7 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		this.gameState = null;
 		this.loader = new GameStateLoader();
 		this.score = 0;
-		this.hs = new HighScore();
+		timer = new GameTimer();
 		loader.load();
 	}
 
@@ -32,19 +31,20 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		if (! StateTransition.list.isEmpty()) {
 			changeToState(StateTransition.list.remove(0));
 	    	gameState.start(level);
+	    	timer.start(this);
 		}
     }
 
 	public void stopGame() {
+		System.out.println("STOP CURRENT GAME");
 		score += gameState.exit();
-		
+		timer.exit();
     	if(! StateTransition.list.isEmpty()){
     		start(level);
     	} else {
     		exit();
     		ScoreControl sc = new ScoreControl();
     		sc.setScore(score);
-    		hs.addEntry(sc);
     	}
     }
 	
@@ -86,8 +86,14 @@ public class GameContext extends Thread implements GameState, StateTransition {
 	}
 
 	@Override
-	public TimerControl getTimer() {
-		return gameState.getTimer();
+	public int getTime() {
+		return gameState.getTime();
 	}
+
+	public GameTimer getTimer() {
+		return timer;
+	}
+	
+	
 }
 

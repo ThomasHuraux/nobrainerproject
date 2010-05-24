@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginView extends JPanel{
@@ -12,14 +13,14 @@ public class LoginView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField nickname;
-	private JTextField pass;
+	private JPasswordField pass;
 	private JButton ok;
 	private JButton create;
 	
 	public LoginView(){
 		
 		nickname = new JTextField();
-		pass = new JTextField();
+		pass = new JPasswordField();
 		
 		ok = new JButton("OK");
 		create = new JButton("Create an account");
@@ -50,7 +51,7 @@ public class LoginView extends JPanel{
 		return nickname;
 	}
 
-	public JTextField getPass() {
+	public JPasswordField getPass() {
 		return pass;
 	}
 
