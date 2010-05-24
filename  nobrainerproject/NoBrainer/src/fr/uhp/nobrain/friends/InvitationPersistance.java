@@ -7,19 +7,19 @@ import org.hibernate.Session;
 
 import fr.uhp.nobrain.tools.HibernateUtil;
 
-public class FriendsPersistance {
+public class InvitationPersistance {
 
 	@SuppressWarnings("unchecked")
-	public static int select(Friends friendship) throws Exception {
+	public static int select(Invitation invitation) throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
 
-		Query q = s.createQuery("from Friends");
+		Query q = s.createQuery("from Invitation");
 		List<Invitation> l = q.list();
 
 		for (Invitation i : l)
-			if (friendship.equals(i))
+			if (invitation.equals(i))
 				return i.getInvitationId();
 
 		s.close();
@@ -27,16 +27,16 @@ public class FriendsPersistance {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static boolean alreadyExists(Friends friendship) throws Exception {
+	public static boolean alreadyExists(Invitation inv) throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
 
-		Query q = s.createQuery("from Friends");
+		Query q = s.createQuery("from Invitation");
 		List<Invitation> l = q.list();
 
 		for (Invitation i : l)
-			if (i.equals(friendship))
+			if (i.equals(inv))
 				return true;
 
 		s.close();
@@ -44,19 +44,18 @@ public class FriendsPersistance {
 		return false;
 	}
 
-	public static boolean persist(Friends friendship) throws Exception {
+	public static boolean persist(Invitation i) throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
 
 		boolean persist = false;
-		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(friendship.getPlayerOneId()) 
-				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(friendship.getPlayerTwoId())) {
-			if (alreadyExists(friendship))
-				System.out.println("Friends persist : Operation impossible.");
+		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerOneId()) || ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerTwoId())) {
+			if (alreadyExists(i))
+				System.out.println("Invitation persist : Operation impossible.");
 		}
 		else {
-			s.save(friendship);
+			s.save(i);
 			persist = true;
 		}
 
@@ -67,19 +66,19 @@ public class FriendsPersistance {
 		return persist;
 	}
 
-	public static boolean delete(Friends friendship) throws Exception {
+	public static boolean delete(Invitation invitation) throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
 
 		boolean result = false;
 
-		if (alreadyExists(friendship)) {
-			friendship.setInvitationId(select(friendship));
-			s.delete(friendship);
+		if (alreadyExists(invitation)) {
+			invitation.setInvitationId(select(invitation));
+			s.delete(invitation);
 			s.flush();
 		}
-		if (!alreadyExists(friendship))
+		if (!alreadyExists(invitation))
 			result = true;
 
 		s.close();

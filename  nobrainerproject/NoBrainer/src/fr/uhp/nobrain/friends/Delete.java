@@ -2,17 +2,17 @@ package fr.uhp.nobrain.friends;
 
 public class Delete extends Action{
 
-	private Invitation invitation;
+	private Friends friendship;
 
-	public Delete(Invitation invitation) {
+	public Delete(Friends friendship) {
 		super();
-		this.invitation = invitation;
+		this.friendship = friendship;
 	}
 	
 	@Override
 	public void execute() {
 		try {
-			FriendsPersistance.delete(invitation);
+			FriendsPersistance.delete(friendship);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

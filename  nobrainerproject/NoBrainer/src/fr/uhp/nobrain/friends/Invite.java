@@ -17,7 +17,7 @@ public class Invite extends Action{
 	@Override
 	public void execute() {
 		try {
-			FriendsPersistance.persist(invitation);
+			InvitationPersistance.persist(invitation);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

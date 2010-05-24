@@ -12,7 +12,7 @@ public class Decline extends Action{
 	@Override
 	public void execute() {
 		try {
-			FriendsPersistance.delete(invitation);
+			InvitationPersistance.delete(invitation);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
