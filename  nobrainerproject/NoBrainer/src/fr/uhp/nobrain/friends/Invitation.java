@@ -1,8 +1,14 @@
 package fr.uhp.nobrain.friends;
 
+import java.util.List;
+
 import javax.persistence.*;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.tools.HibernateUtil;
 
 @Entity
 @IdClass(Invitation.class)
@@ -46,8 +52,29 @@ public class Invitation implements java.io.Serializable {
 		return playerOneId;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public String getPlayerOneName() throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+		
+		Query q = s.createQuery("from Player");
+		List<Player> l = q.list();
+		
+		for (Player p : l)
+			if (playerOneId == p.getId())
+				return p.getName();
+
+		s.close();
+		return null;
+	}
+	
 	public void setPlayerOneId(int playerOneId) {
 		this.playerOneId = playerOneId;
+	}
+	
+	public void setPlayerOneName(String name) {
+		
 	}
 	
 	@Id
@@ -58,6 +85,27 @@ public class Invitation implements java.io.Serializable {
 	
 	public void setPlayerTwoId(int playerTwoId) {
 		this.playerTwoId = playerTwoId;
+	}
+	
+	public void setPlayerTwoName(String name) {
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getPlayerTwoName() throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+		
+		Query q = s.createQuery("from Player");
+		List<Player> l = q.list();
+		
+		for (Player p : l)
+			if (playerTwoId == p.getId())
+				return p.getName();
+
+		s.close();
+		return null;
 	}
 	
 	@Override

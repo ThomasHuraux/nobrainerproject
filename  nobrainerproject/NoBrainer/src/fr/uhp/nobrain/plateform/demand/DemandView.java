@@ -27,11 +27,16 @@ public class DemandView {
 		
 		JScrollPane jsp = new JScrollPane();
 		JPanel inpan = new JPanel();
-		inpan.setLayout(new GridLayout(demand.getPlayers().size(),1));
+		inpan.setLayout(new GridLayout(demand.getInvitations().size(),1));
 		
 		boolean b = false;
-		for(int i = 0; i<demand.getPlayers().size();i++){
-			name.add(new JLabel(demand.getPlayers().get(i).getNickname()));
+		for(int i = 0; i<demand.getInvitations().size();i++){
+			try {
+				name.add(new JLabel(demand.getInvitations().get(i).getPlayerTwoName()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			accepts.add(new JButton("Accept"));
 			ignores.add(new JButton("Ignore"));
 			

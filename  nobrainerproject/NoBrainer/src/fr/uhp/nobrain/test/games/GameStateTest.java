@@ -53,7 +53,7 @@ public class GameStateTest {
         
         setUp();
         
-        assertNotNull(instance.getTimer());
+        assertNotNull(instance.getTime());
         
         tearDown();
     }

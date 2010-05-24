@@ -3,13 +3,14 @@ package fr.uhp.nobrain.test.games;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import fr.uhp.nobrain.games.GameContext;
 import fr.uhp.nobrain.games.GameState;
 import fr.uhp.nobrain.games.StateTransition;
+
 import static org.junit.Assert.*;
 
 public class GameContextTest {
-
 	GameContext instance;
 	int level;
 	

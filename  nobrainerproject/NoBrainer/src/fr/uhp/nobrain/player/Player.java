@@ -15,7 +15,7 @@ public class Player implements java.io.Serializable {
 	public Player(String name, String pwd) {
 		super();
 		this.name = name;
-		this.pwd = PlayerTools.sha1(pwd);
+		this.pwd = PlayerPersistance.sha1(pwd);
 	}
 
 	@Id
@@ -44,7 +44,7 @@ public class Player implements java.io.Serializable {
 	}
 
 	public void setPwd(String pwd) {
-		this.pwd = PlayerTools.sha1(pwd);
+		this.pwd = PlayerPersistance.sha1(pwd);
 	}
 
 	public boolean isFriend(Player player) {
@@ -55,7 +55,7 @@ public class Player implements java.io.Serializable {
 	public boolean equals(Object p) {
 		if (!(p instanceof Player)) return false;
 		if (this.getName().equals(((Player)p).getName()) 
-				&& PlayerTools.sha1(this.getPwd()).equals(((Player) p).getPwd()))
+				&& PlayerPersistance.sha1(this.getPwd()).equals(((Player) p).getPwd()))
 			return true;
 		return false;
 	}
