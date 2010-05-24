@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.levelchooser;
 
 import java.awt.Container;
 import java.util.Observable;

@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.playerinvite;
 
 import java.awt.Color;
 import java.awt.GridLayout;

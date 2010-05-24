@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.demand;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

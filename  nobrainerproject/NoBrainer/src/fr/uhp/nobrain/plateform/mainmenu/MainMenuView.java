@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

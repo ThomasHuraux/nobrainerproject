@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.register;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

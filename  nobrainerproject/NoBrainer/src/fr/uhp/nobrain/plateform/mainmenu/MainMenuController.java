@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,6 +13,7 @@ import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.levelchooser.LevelChooser;
 
 public class MainMenuController implements Controller{
 

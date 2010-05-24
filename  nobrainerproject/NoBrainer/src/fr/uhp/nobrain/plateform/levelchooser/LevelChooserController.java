@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.levelchooser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,7 @@ import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.container.GameContainer;
 
 public class LevelChooserController implements Controller{
 	

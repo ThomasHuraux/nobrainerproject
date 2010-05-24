@@ -1,4 +1,4 @@
-package fr.uhp.nobrain.plateform;
+package fr.uhp.nobrain.plateform.mainmenu;
 
 import java.util.Observable;
 import java.util.Observer;

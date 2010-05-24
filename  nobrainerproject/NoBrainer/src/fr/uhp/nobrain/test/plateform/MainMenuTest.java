@@ -1,7 +1,7 @@
 package fr.uhp.nobrain.test.plateform;
 
 import fr.uhp.nobrain.mvc.Switcher;
-import fr.uhp.nobrain.plateform.MainMenu;
+import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
 
 public class MainMenuTest {
 
