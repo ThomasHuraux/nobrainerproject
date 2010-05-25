@@ -9,15 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import fr.uhp.nobrain.player.Player;
-
 public class PlayerInviteView {
 	
 	private JPanel panel;
 	private ArrayList<JLabel> name;
 	private ArrayList<JButton> invite;
 	
-	public PlayerInviteView(PlayerInvite pi){
+	public PlayerInviteView(PlayerInvite pi) {
 
 		name = new ArrayList<JLabel>();
 		invite = new ArrayList<JButton>();

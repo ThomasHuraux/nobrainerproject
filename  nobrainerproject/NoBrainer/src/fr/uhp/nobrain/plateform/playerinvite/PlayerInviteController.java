@@ -2,26 +2,35 @@ package fr.uhp.nobrain.plateform.playerinvite;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
+import fr.uhp.nobrain.friends.Action;
 import fr.uhp.nobrain.friends.Invite;
+import fr.uhp.nobrain.mvc.Controller;
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
 
-public class PlayerInviteController {
+public class PlayerInviteController implements Controller{
 
-	private PlayerInvite model;
-	private PlayerInviteView view;
+	private PlayerInviteView piv;
 	
-	public PlayerInviteController(PlayerInvite m, PlayerInviteView v) {
-		this.model = m;
-		this.view = v;
-		
-		for(int i = 0;i<view.getInvite().size();i++){
+	@Override
+	public void initialize(final Model model, final View view) {
+		piv = (PlayerInviteView) view;
+		for(int i = 0; i < piv.getInvite().size(); i++){
 			final int id = i;
-			view.getInvite().get(i).addActionListener(new ActionListener(){
+			((PlayerInviteView)view).getInvite().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					Invite invitation = new Invite(model.getCurrent().getId(),model.getPlayers().get(id).getId());	
+					Action invitation = new Invite(((PlayerInvite)model).getCurrent().getId(),((PlayerInvite)model).getPlayers().get(id).getId());	
 					invitation.execute();
 				}
 			});
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }
