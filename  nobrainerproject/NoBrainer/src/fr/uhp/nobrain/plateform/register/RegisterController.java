@@ -2,13 +2,18 @@ package fr.uhp.nobrain.plateform.register;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
-public class RegisterController {
+import fr.uhp.nobrain.mvc.Controller;
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class RegisterController implements Controller{
 	
 	private RegisterView view;
 
-	public RegisterController(RegisterView v) {
-		view = v;
+	public void initialize(Model model, View v){
+		view = (RegisterView) v;
 		
 		ActionListener al = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -19,5 +24,11 @@ public class RegisterController {
 		};
 		
 		view.getOk().addActionListener(al);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

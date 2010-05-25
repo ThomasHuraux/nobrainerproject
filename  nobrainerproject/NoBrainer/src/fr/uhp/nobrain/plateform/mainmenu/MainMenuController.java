@@ -1,14 +1,10 @@
 package fr.uhp.nobrain.plateform.mainmenu;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
-import javax.swing.JFrame;
-
-import fr.uhp.nobrain.games.GameContext;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.Switcher;

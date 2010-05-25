@@ -1,6 +1,7 @@
 package fr.uhp.nobrain.plateform.login;
 
 import java.awt.GridLayout;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -8,7 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LoginView extends JPanel{
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class LoginView extends JPanel implements View{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -17,7 +21,7 @@ public class LoginView extends JPanel{
 	private JButton ok;
 	private JButton create;
 	
-	public LoginView(){
+	public void initialize(Model model){
 		
 		nickname = new JTextField();
 		pass = new JPasswordField();
@@ -41,6 +45,9 @@ public class LoginView extends JPanel{
 		add(nicknameP);
 		add(passP);
 		add(buttons);
+		
+		model.attach(this);
+		makeController();
 	}
 
 	public static long getSerialversionuid() {
@@ -61,6 +68,18 @@ public class LoginView extends JPanel{
 
 	public JButton getCreate() {
 		return create;
+	}
+
+	@Override
+	public void makeController() {
+		LoginController lc = new LoginController();
+		lc.initialize(null, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

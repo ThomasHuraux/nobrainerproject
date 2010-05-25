@@ -1,6 +1,7 @@
 package fr.uhp.nobrain.plateform.register;
 
 import java.awt.GridLayout;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -8,7 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class RegisterView extends JPanel{
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class RegisterView extends JPanel implements View{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +25,7 @@ public class RegisterView extends JPanel{
 	private JButton ok;
 	
 	
-	public RegisterView(){
+	public void initialize(Model model){
 		
 		lastname = new JTextField();
 		firstname = new JTextField();
@@ -64,6 +68,9 @@ public class RegisterView extends JPanel{
 		add(passP);
 		add(confirmP);
 		add(ok);
+		
+		model.attach(this);
+		makeController();
 
 	}
 
@@ -100,6 +107,19 @@ public class RegisterView extends JPanel{
 
 	public JButton getOk() {
 		return ok;
+	}
+
+	@Override
+	public void makeController() {
+		RegisterController rc = new RegisterController();
+		rc.initialize(null, this);
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
