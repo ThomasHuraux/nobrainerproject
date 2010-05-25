@@ -7,8 +7,12 @@ import java.util.Observable;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+
+import fr.uhp.nobrain.plateform.login.Login;
 import fr.uhp.nobrain.player.Player;
 import fr.uhp.nobrain.player.PlayerPersistance;
+import fr.uhp.nobrain.tools.Context;
+
 
 public class RegisterController implements Controller{
 	
@@ -33,7 +37,16 @@ public class RegisterController implements Controller{
 			
 		};
 		
+		ActionListener alr = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Login l = new Login();
+				Context.change(l);
+			}
+			
+		};
+		
 		view.getOk().addActionListener(al);
+		view.getReturnB().addActionListener(alr);
 	}
 
 	@Override

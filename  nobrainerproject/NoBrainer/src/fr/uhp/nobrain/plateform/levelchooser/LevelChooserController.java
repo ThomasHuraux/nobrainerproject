@@ -7,9 +7,9 @@ import java.util.Observable;
 import fr.uhp.nobrain.games.GameContext;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
-import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.container.GameContainer;
+import fr.uhp.nobrain.tools.Context;
 
 public class LevelChooserController implements Controller{
 	
@@ -23,7 +23,7 @@ public class LevelChooserController implements Controller{
 				GameContext g = new GameContext();
 				g.start(0);
 				GameContainer gcc = new GameContainer(g);
-				Switcher.change(gcc);
+				Context.change(gcc);
 			}
 		};
 		ActionListener alM = new ActionListener(){
@@ -31,7 +31,7 @@ public class LevelChooserController implements Controller{
 				GameContext g = new GameContext();
 				g.start(1);
 				GameContainer gcc = new GameContainer(g);
-				Switcher.change(gcc);
+				Context.change(gcc);
 			}
 		};
 		ActionListener alH = new ActionListener(){
@@ -39,7 +39,7 @@ public class LevelChooserController implements Controller{
 				GameContext g = new GameContext();
 				g.start(2);
 				GameContainer gcc = new GameContainer(g);
-				Switcher.change(gcc);
+				Context.change(gcc);
 			}
 		};
 		

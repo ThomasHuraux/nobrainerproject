@@ -7,9 +7,9 @@ import java.util.Observable;
 
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
-import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.levelchooser.LevelChooser;
+import fr.uhp.nobrain.tools.Context;
 
 public class MainMenuController implements Controller{
 
@@ -26,7 +26,7 @@ public class MainMenuController implements Controller{
 		((MainMenuView) view).getPlayButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				LevelChooser lc = new LevelChooser();
-				Switcher.change(lc);
+				Context.change(lc);
 			}
 		});
 		

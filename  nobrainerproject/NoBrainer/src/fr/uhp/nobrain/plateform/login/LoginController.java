@@ -6,9 +6,9 @@ import java.util.Observable;
 
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
-import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.register.Register;
+import fr.uhp.nobrain.tools.Context;
 
 public class LoginController implements Controller {
 
@@ -30,7 +30,7 @@ public class LoginController implements Controller {
 		ActionListener alCre = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				Register reg = new Register();
-				Switcher.change(reg);
+				Context.change(reg);
 			}
 			
 		};

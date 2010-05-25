@@ -23,6 +23,7 @@ public class RegisterView extends JPanel implements View{
 	private JPasswordField pass;
 	private JPasswordField confirm;
 	private JButton ok;
+	private JButton returnB;
 	
 	
 	public void initialize(Model model){
@@ -35,6 +36,7 @@ public class RegisterView extends JPanel implements View{
 		confirm = new JPasswordField();
 		
 		ok = new JButton("OK");
+		returnB = new JButton("Return");
 		
 		JPanel lastnameP = new JPanel();
 		lastnameP.add(new JLabel("Lastname"));
@@ -60,7 +62,7 @@ public class RegisterView extends JPanel implements View{
 		confirmP.add(new JLabel("Confirm password"));
 		confirmP.add(confirm);
 		
-		setLayout(new GridLayout(7,1));
+		setLayout(new GridLayout(8,1));
 		add(lastnameP);
 		add(firstnameP);
 		add(nicknameP);
@@ -68,6 +70,7 @@ public class RegisterView extends JPanel implements View{
 		add(passP);
 		add(confirmP);
 		add(ok);
+		add(returnB);
 		
 		model.attach(this);
 		makeController();
@@ -107,6 +110,10 @@ public class RegisterView extends JPanel implements View{
 
 	public JButton getOk() {
 		return ok;
+	}
+	
+	public JButton getReturnB(){
+		return returnB;
 	}
 
 	@Override
