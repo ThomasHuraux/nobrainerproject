@@ -14,7 +14,6 @@ public class PlayerInviteController implements Controller{
 
 	private PlayerInviteView piv;
 	
-	@Override
 	public void initialize(final Model model, final View view) {
 		piv = (PlayerInviteView) view;
 		for(int i = 0; i < piv.getInvite().size(); i++){

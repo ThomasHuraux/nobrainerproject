@@ -3,30 +3,38 @@ package fr.uhp.nobrain.plateform.playerinvite;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class PlayerInviteView {
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class PlayerInviteView extends JPanel implements View{
 	
-	private JPanel panel;
+	private PlayerInvite model;
+	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<JLabel> name;
 	private ArrayList<JButton> invite;
 	
-	public PlayerInviteView(PlayerInvite pi) {
+	public void initialize(Model m) {
+		
+		model = (PlayerInvite) m;
 
 		name = new ArrayList<JLabel>();
 		invite = new ArrayList<JButton>();
 		
 		JScrollPane jsp = new JScrollPane();
 		JPanel inpan = new JPanel();
-		inpan.setLayout(new GridLayout(pi.getPlayers().size(),1));
+		inpan.setLayout(new GridLayout(model.getPlayers().size(),1));
 		
 		boolean b = false;
-		for(int i = 0; i<pi.getPlayers().size();i++){
-			name.add(new JLabel(pi.getPlayers().get(i).getName()));
+		for(int i = 0; i<model.getPlayers().size();i++){
+			name.add(new JLabel(model.getPlayers().get(i).getName()));
 			invite.add(new JButton("Invite"));
 			
 			JPanel line = new JPanel();
@@ -41,19 +49,30 @@ public class PlayerInviteView {
 		}
 		
 		jsp.add(inpan);
-		panel.add(jsp);
+		add(jsp);
+		
+		model.attach(this);
+		makeController();
 	}
 
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public ArrayList<JLabel> getName() {
+	public ArrayList<JLabel> getNames() {
 		return name;
 	}
 
 	public ArrayList<JButton> getInvite() {
 		return invite;
+	}
+
+	@Override
+	public void makeController() {
+		PlayerInviteController pic = new PlayerInviteController();
+		pic.initialize(model, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
