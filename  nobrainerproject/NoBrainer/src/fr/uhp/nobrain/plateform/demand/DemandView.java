@@ -4,21 +4,30 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class DemandView {
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class DemandView extends JPanel implements View{
+
+	private static final long serialVersionUID = 1L;
 	
-	private JPanel panel;
+	private Demand demand;
+	
 	private JButton quit;
 	private ArrayList<JLabel> name;
 	private ArrayList<JButton> accepts;
 	private ArrayList<JButton> ignores;
 	
-	public DemandView(Demand demand){
+	public void initialize(Model model){
+		
+		demand = (Demand) model;
 
 		name = new ArrayList<JLabel>();
 		quit = new JButton("Return");
@@ -54,17 +63,16 @@ public class DemandView {
 		
 		jsp.add(inpan);
 		
-		panel.setLayout(new BorderLayout());
-		panel.add(new JLabel("They want be your friend :"),BorderLayout.NORTH);
-		panel.add(jsp,BorderLayout.CENTER);
-		panel.add(quit,BorderLayout.SOUTH);
+		setLayout(new BorderLayout());
+		add(new JLabel("They want be your friend :"),BorderLayout.NORTH);
+		add(jsp,BorderLayout.CENTER);
+		add(quit,BorderLayout.SOUTH);
+		
+		model.attach(this);
+		makeController();
 	}
 
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public ArrayList<JLabel> getName() {
+	public ArrayList<JLabel> getNickName() {
 		return name;
 	}
 
@@ -78,6 +86,18 @@ public class DemandView {
 
 	public JButton getQuit() {
 		return quit;
+	}
+
+	@Override
+	public void makeController() {
+		DemandController dc = new DemandController();
+		dc.initialize(demand, this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

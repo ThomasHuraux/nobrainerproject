@@ -2,17 +2,23 @@ package fr.uhp.nobrain.plateform.demand;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
-public class DemandController {
+import fr.uhp.nobrain.mvc.Controller;
+import fr.uhp.nobrain.mvc.Model;
+import fr.uhp.nobrain.mvc.View;
+
+public class DemandController implements Controller {
 	
 	private Demand model;
 	private DemandView view;
 	
-	public DemandController(Demand m, DemandView v) {
-		this.model = m;
-		this.view = v;
+	public void initialize(Model m, View v) {
+		this.model = (Demand)m;
+		this.view = (DemandView)v;
 		
 		for(int i = 0;i<view.getAccepts().size();i++){
+			@SuppressWarnings("unused")
 			final int id = i;
 			
 			view.getAccepts().get(i).addActionListener(new ActionListener(){
@@ -34,6 +40,20 @@ public class DemandController {
 			}
 		});
 		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setModel(Demand model) {
+		this.model = model;
+	}
+
+	public Demand getModel() {
+		return model;
 	}
 
 }
