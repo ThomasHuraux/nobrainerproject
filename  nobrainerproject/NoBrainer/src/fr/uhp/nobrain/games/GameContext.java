@@ -3,7 +3,7 @@ package fr.uhp.nobrain.games;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import fr.uhp.nobrain.highscore.ScoreControl;
+import fr.uhp.nobrain.mvc.Switcher;
 import fr.uhp.nobrain.timer.GameTimer;
 
 
@@ -23,29 +23,25 @@ public class GameContext extends Thread implements GameState, StateTransition {
 		this.score = 0;
 		timer = new GameTimer();
 		loader.load();
+		Switcher.create();
 	}
 
 	public void start (int level) {
 		this.level = level;
-		
+		System.out.println("TAILLE DE LA LISTE " + StateTransition.list.size()+"\n");
 		if (! StateTransition.list.isEmpty()) {
-			changeToState(StateTransition.list.remove(0));
+			changeToState(StateTransition.list.remove(0)); 
 	    	gameState.start(level);
 	    	timer.start(this);
-		}
+		} else 
+			exit();
     }
 
 	public void stopGame() {
 		System.out.println("STOP CURRENT GAME");
 		score += gameState.exit();
 		timer.exit();
-    	if(! StateTransition.list.isEmpty()){
-    		start(level);
-    	} else {
-    		exit();
-    		ScoreControl sc = new ScoreControl();
-    		sc.setScore(score);
-    	}
+    	start(level);
     }
 	
 	@Override

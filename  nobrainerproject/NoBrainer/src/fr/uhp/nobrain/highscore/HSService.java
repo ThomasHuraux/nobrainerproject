@@ -1,9 +1,9 @@
 package fr.uhp.nobrain.highscore;
 
-public abstract class HSService {
+public interface HSService {
 
-	public abstract void addEntry(ScoreControl s);
-	public abstract HighScoreView getTabView(int level);
-	public abstract HighScoreView getGraphView();
+	public void addEntry(ScoreControl s);
+	public HighScoreView getTabView(int level);
+	public HighScoreView getGraphView();
 	
 }
