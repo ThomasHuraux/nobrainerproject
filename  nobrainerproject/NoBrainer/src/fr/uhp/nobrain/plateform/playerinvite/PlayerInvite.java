@@ -11,6 +11,7 @@ import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.register.RegisterView;
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class PlayerInvite extends Observable implements Model{
@@ -21,8 +22,8 @@ public class PlayerInvite extends Observable implements Model{
 	private List<Player> players;
 	
 	@SuppressWarnings("unchecked")
-	public PlayerInvite(Player c) throws Exception{
-		current = c;
+	public PlayerInvite() throws Exception{
+		current = Context.getCurrentPlayer();
 		HibernateUtil hibernateUtil = new HibernateUtil();
         Session s = hibernateUtil.getSession();
         s.beginTransaction();

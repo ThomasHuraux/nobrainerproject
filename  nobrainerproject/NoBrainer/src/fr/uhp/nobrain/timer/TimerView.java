@@ -34,7 +34,7 @@ public class TimerView extends JPanel implements View{
 	public void makeController() {
 		TimerControl tc = new TimerControl();
 		tc.initialize(timer,this);
-		timer.control = tc;
+		timer.controller = tc;
 	}
 
 	@Override

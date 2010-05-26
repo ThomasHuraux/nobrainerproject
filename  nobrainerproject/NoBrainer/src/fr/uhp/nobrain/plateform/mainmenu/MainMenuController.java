@@ -8,6 +8,7 @@ import java.util.Observable;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.friendsmenu.FriendsMenu;
 import fr.uhp.nobrain.plateform.levelchooser.LevelChooser;
 import fr.uhp.nobrain.tools.Context;
 
@@ -38,7 +39,8 @@ public class MainMenuController implements Controller{
 		
 		((MainMenuView) view).getFriendsButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("friends");
+				FriendsMenu fm = new FriendsMenu();
+				Context.change(fm);
 			}
 		});
 	}

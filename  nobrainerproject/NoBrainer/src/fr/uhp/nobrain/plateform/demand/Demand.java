@@ -12,6 +12,7 @@ import fr.uhp.nobrain.friends.Invitation;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class Demand extends Observable implements Model{
@@ -21,8 +22,8 @@ public class Demand extends Observable implements Model{
 	private List<Invitation> invitations;
 	
 	@SuppressWarnings("unchecked")
-	public Demand(Player c) throws Exception{
-		current = c;
+	public Demand() throws Exception{
+		current = Context.getCurrentPlayer();
 		HibernateUtil hibernateUtil = new HibernateUtil();
         Session s = hibernateUtil.getSession();
         s.beginTransaction();

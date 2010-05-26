@@ -15,20 +15,21 @@ public class GameTimer extends Observable implements Model{
 	private GameContext game;
 	
 	private TimerView view;
-	protected TimerControl control;
+	protected TimerControl controller;
 	
 	protected int timeRemaining;
 	protected boolean run = true;
-	
-	public int exit() {
-		return control.exit();
-	}
 
 	public void start(GameContext game) {
 		this.game = game;
 		timeRemaining = game.getGameState().getTime();
 		(new TimerView()).initialize(this);
-		control.start();
+		run = true;
+	}
+	
+	public void stop(){
+		controller.stop();
+		run = false;
 	}
 	
 	@Override

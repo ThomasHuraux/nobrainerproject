@@ -10,7 +10,10 @@ public class LevelChooser extends Observable implements Model {
 
 	private LevelChooserView view;
 	
+	private String logoPath;
+	
 	public LevelChooser(){
+		setLogoPath("img/nobrainer.png");
 		(new LevelChooserView()).initialize(this);
 	}
 	
@@ -28,6 +31,14 @@ public class LevelChooser extends Observable implements Model {
 	@Override
 	public Container getView() {
 		return view;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
 	}
 
 }

@@ -21,6 +21,10 @@ public class TimerControl implements Controller {
 	public void start() {
 		t.start();
 	}
+	
+	public void stop(){
+		t.interrupt();
+	}
 
 	@Override
 	public void initialize(final Model m, final View view) {
@@ -28,7 +32,7 @@ public class TimerControl implements Controller {
 		t = new Thread(){
 			@SuppressWarnings("static-access")
 			public void run(){
-				while(model.isRun()){
+				while(model.isRun() && !isInterrupted()){
 					if (model.timeRemaining-- == 1)
 						((GameTimer)model).setRun(false);
 					
@@ -37,13 +41,11 @@ public class TimerControl implements Controller {
 					try {
 						int refreshDelay = model.getRefreshDelay();
 						Thread.sleep(refreshDelay);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					} catch (InterruptedException e) {}
 				}
 			}
 		};
+		start();
 	}
 
 	@Override

@@ -68,6 +68,17 @@ public class GameContainerView extends JPanel implements View{
 	public void update(Observable o, Object arg) {
 		name.setText(((GameContainer)o).getGameContext().getGameName());
 		score.setText("Score : "+((GameContainer)o).getGameContext().getScore());
+		if(((Boolean) arg).booleanValue()){
+			games.removeAll();
+			timer.removeAll();
+			
+			games = ((GameContainer)o).getGameContext().getPanel();
+			timer = model.getGameContext().getTimer().getView();
+			timer.setBackground(Color.black);
+			
+			add(games,BorderLayout.CENTER);
+			add(timer,BorderLayout.SOUTH);
+		}
 	}
 
 }

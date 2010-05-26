@@ -1,7 +1,6 @@
 package fr.uhp.nobrain.plateform.mainmenu;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Observable;
 
@@ -45,8 +44,6 @@ public class MainMenuView extends JPanel implements View{
 		
 		String imgPath = ((MainMenu) model).getLogoPath();
 		logo = new JLabel(new ImageIcon(imgPath));
-		
-		setPreferredSize(new Dimension(302,483));
 		
 		setLayout(new BorderLayout());
 		add(logo,BorderLayout.CENTER);

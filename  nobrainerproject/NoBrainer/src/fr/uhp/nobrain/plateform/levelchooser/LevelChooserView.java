@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.uhp.nobrain.mvc.Model;
@@ -18,6 +20,8 @@ public class LevelChooserView extends JPanel implements View{
 	private JButton medium;
 	private JButton hard;
 	
+	private JLabel logo;
+	
 	public void initialize(Model model){
 		
 		easy = new JButton("EASY");
@@ -30,8 +34,12 @@ public class LevelChooserView extends JPanel implements View{
 		buttons.add(medium);
 		buttons.add(hard);
 		
+		String imgPath = ((LevelChooser) model).getLogoPath();
+		logo = new JLabel(new ImageIcon(imgPath));
+		
 		setLayout(new BorderLayout());
-		add(buttons,BorderLayout.CENTER);
+		add(logo,BorderLayout.CENTER);
+		add(buttons,BorderLayout.SOUTH);
 		
 		model.attach(this);
 		makeController();
