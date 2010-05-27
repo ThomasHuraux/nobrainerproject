@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
@@ -23,16 +25,23 @@ public class RegisterController implements Controller{
 		
 		ActionListener al = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
-				if (view.getPass().getText().equals(view.getConfirm().getText())) {
-					Player player = new Player(view.getNickname().getText(), view.getPass().getText());
-					try {
-						PlayerPersistance.persist(player);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				if(view.getLogin().getText().length() != 0
+					&& view.getConfirm().getText().length() != 0
+					&& view.getPass().getText().length() != 0
+				){
+					System.out.println(view.getLogin().getText());
+					if (view.getPass().getText().equals(view.getConfirm().getText())) {
+						Player player = new Player(view.getLogin().getText(), view.getPass().getText());
+						try {
+							PlayerPersistance.persist(player);
+							Login login = new Login();
+							Context.change(login);
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(view,e1,"Error",JOptionPane.ERROR_MESSAGE);
+							e1.printStackTrace();
+						}
 					}
-				}
+				}else JOptionPane.showMessageDialog(view,"Please fill all fields","Failed to register",JOptionPane.ERROR_MESSAGE);
 			}
 			
 		};

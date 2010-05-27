@@ -30,7 +30,7 @@ public class MainMenuView extends JPanel implements View{
 
 		this.model = model;
 		
-		logoutButton = new JButton("Logout");
+		logoutButton = new JButton("Quit");
 		statsButton = new JButton("Stats");
 		friendsButton = new JButton("Friends");
 		playButton = new JButton("Play");
