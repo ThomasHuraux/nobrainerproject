@@ -27,7 +27,7 @@ public class LoginController implements Controller {
 		
 		ActionListener alOk = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				Player player = new Player(view.getName(), view.getPass().toString());
+				Player player = new Player(view.getNickname().getText(), view.getPass().toString());
 				MainMenu mn;
 				try {
 					if (PlayerPersistance.select(player) >= 0) {
