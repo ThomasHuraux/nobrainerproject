@@ -9,6 +9,7 @@ public class MainMenuTest {
 
 	public static void main(String[] args){
 		Login r =  new Login();
+		MainMenu mm = new MainMenu();
 		Context.create();
 		Context.change(r);
 	}

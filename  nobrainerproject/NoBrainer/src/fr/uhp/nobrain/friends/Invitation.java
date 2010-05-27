@@ -53,7 +53,7 @@ public class Invitation implements java.io.Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public String getPlayerOneName() throws Exception {
+	public String playerOneName() throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();
@@ -73,10 +73,6 @@ public class Invitation implements java.io.Serializable {
 		this.playerOneId = playerOneId;
 	}
 	
-	public void setPlayerOneName(String name) {
-		
-	}
-	
 	@Id
 	@Column(name="playerTwoId",insertable=false,updatable=false)
 	public int getPlayerTwoId() {
@@ -87,12 +83,8 @@ public class Invitation implements java.io.Serializable {
 		this.playerTwoId = playerTwoId;
 	}
 	
-	public void setPlayerTwoName(String name) {
-		
-	}
-	
 	@SuppressWarnings("unchecked")
-	public String getPlayerTwoName() throws Exception {
+	public String playerTwoName() throws Exception {
 		HibernateUtil hibernateUtil = new HibernateUtil();
 		Session s = hibernateUtil.getSession();
 		s.beginTransaction();

@@ -41,7 +41,7 @@ public class DemandView extends JPanel implements View{
 		boolean b = false;
 		for(int i = 0; i<demand.getInvitations().size();i++){
 			try {
-				name.add(new JLabel(demand.getInvitations().get(i).getPlayerTwoName()));
+				name.add(new JLabel(demand.getInvitations().get(i).playerTwoName()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

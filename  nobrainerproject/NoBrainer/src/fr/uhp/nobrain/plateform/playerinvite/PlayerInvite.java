@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import fr.uhp.nobrain.friends.Invitation;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
-import fr.uhp.nobrain.plateform.register.RegisterView;
 import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
@@ -52,8 +51,8 @@ public class PlayerInvite extends Observable implements Model{
 		this.deleteObserver(view);
 	}
 
-	public RegisterView getView() {
-		return (RegisterView) view;
+	public PlayerInviteView getView() {
+		return (PlayerInviteView) view;
 	}
 
 }

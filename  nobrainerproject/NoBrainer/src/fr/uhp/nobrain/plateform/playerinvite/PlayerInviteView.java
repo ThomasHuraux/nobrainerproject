@@ -35,7 +35,7 @@ public class PlayerInviteView extends JPanel implements View{
 		boolean b = false;
 		for(int i = 0; i<model.getInvitations().size();i++){
 			try {
-				name.add(new JLabel(model.getInvitations().get(i).getPlayerTwoName()));
+				name.add(new JLabel(model.getInvitations().get(i).playerTwoName()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

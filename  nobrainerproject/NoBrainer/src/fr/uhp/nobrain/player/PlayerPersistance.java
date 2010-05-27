@@ -45,6 +45,8 @@ public class PlayerPersistance {
 		Query q = s.createQuery("from Player");
 		List<Player> l = q.list();
 		
+		System.out.println("ENTER : "+player.getName()+" "+player.getPwd());
+		
 		for (Player p : l)
 			if (player.equals(p))
 				return p.getId();
