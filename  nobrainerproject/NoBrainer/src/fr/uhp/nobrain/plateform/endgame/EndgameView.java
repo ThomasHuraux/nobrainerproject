@@ -1,6 +1,8 @@
 package fr.uhp.nobrain.plateform.endgame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Observable;
@@ -30,19 +32,31 @@ public class EndgameView extends JPanel implements View{
 		
 		score = new JLabel("Your score : "+((Endgame)model).getScore()+" pts");
 		Font f = new Font("Arial", Font.PLAIN, 60);
+		score.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		score.setFont(f);
+		score.setForeground(Color.LIGHT_GRAY);
 		
-		replay = new JButton("Replay");
+		replay = new JButton("Play again");
 		quit = new JButton("Back to menu");
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(2,1));
 		buttons.add(replay);
 		buttons.add(quit);
+		buttons.setBackground(Color.BLACK);
 		
-		setLayout(new BorderLayout());
-		add(score,BorderLayout.CENTER);
-		add(buttons,BorderLayout.SOUTH);
+		
+		
+		JPanel center = new JPanel();
+		center.setLayout(new BorderLayout());
+		center.setPreferredSize(new Dimension(700,500));
+		center.add(score,BorderLayout.CENTER);
+		center.add(buttons,BorderLayout.SOUTH);
+		center.setBackground(Color.BLACK);
+		
+		setPreferredSize(new Dimension(800,600));
+		setBackground(Color.BLACK);
+		add(center);
 
 		model.attach(this);
 		makeController();
