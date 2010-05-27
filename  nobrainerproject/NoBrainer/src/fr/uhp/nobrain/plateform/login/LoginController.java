@@ -34,7 +34,7 @@ public class LoginController implements Controller {
 						Context.setCurrentPlayer(player);
 						mn = new MainMenu();
 						Context.change(mn);
-					}else JOptionPane.showMessageDialog(view, this,"Wrong password or username",JOptionPane.ERROR_MESSAGE);
+					}else JOptionPane.showMessageDialog(view,"Wrong password or username","Please try again",JOptionPane.ERROR_MESSAGE);
 					
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(view,e1,"Error",JOptionPane.ERROR_MESSAGE);
