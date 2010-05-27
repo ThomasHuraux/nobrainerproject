@@ -26,8 +26,9 @@ public class LoginController implements Controller {
 		view = (LoginView) v;
 		
 		ActionListener alOk = new ActionListener(){
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				Player player = new Player(view.getNickname().getText(), view.getPass().toString());
+				Player player = new Player(view.getNickname().getText(), view.getPass().getText());
 				MainMenu mn;
 				try {
 					if (PlayerPersistance.select(player) >= 0) {
