@@ -8,6 +8,7 @@ import fr.uhp.nobrain.friends.FriendsServer;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
 import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 
@@ -17,6 +18,12 @@ public class PlayerInviteController implements Controller{
 	
 	public void initialize(final Model model, final View view) {
 		piv = (PlayerInviteView) view;
+		piv.getReturnB().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				MainMenu mm = new MainMenu();
+				Context.change(mm);
+			}
+		});
 		for(int i = 0; i < piv.getInvite().size(); i++){
 			final int id = i;
 			((PlayerInviteView)view).getInvite().get(i).addActionListener(new ActionListener(){
