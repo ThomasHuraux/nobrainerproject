@@ -1,6 +1,8 @@
 package fr.uhp.nobrain.plateform.playerinvite;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -20,6 +22,7 @@ public class PlayerInviteView extends JPanel implements View{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<JLabel> name;
 	private ArrayList<JButton> invite;
+	private JButton returnB;
 	
 	public void initialize(Model m) {
 		
@@ -27,6 +30,7 @@ public class PlayerInviteView extends JPanel implements View{
 
 		name = new ArrayList<JLabel>();
 		invite = new ArrayList<JButton>();
+		returnB = new JButton("Return");
 		
 		JScrollPane jsp = new JScrollPane();
 		JPanel inpan = new JPanel();
@@ -54,10 +58,18 @@ public class PlayerInviteView extends JPanel implements View{
 		}
 		
 		jsp.add(inpan);
-		add(jsp);
+		jsp.setPreferredSize(new Dimension(290,440));
+		
+		setLayout(new BorderLayout());
+		add(jsp,BorderLayout.CENTER);
+		add(returnB,BorderLayout.SOUTH);
 		
 		model.attach(this);
 		makeController();
+	}
+
+	public JButton getReturnB() {
+		return returnB;
 	}
 
 	public ArrayList<JLabel> getNames() {
