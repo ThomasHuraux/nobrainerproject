@@ -32,20 +32,22 @@ public class InvitationPersistance {
 
 		Query q = s.createQuery("from Invitation");
 		List<Invitation> l = q.list();
-
+		boolean exists = false;
 		for (Invitation i : l)
 			if (i.equals(inv))
-				return true;
+				exists = true;
 
 		s.close();
 
-		return false;
+		return exists;
 	}
 
 	public static boolean persist(Invitation i) throws Exception {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-
+		
+		System.out.println(i.getPlayerOneName() + " " + i.getPlayerTwoName());
+		
 		boolean persist = false;
 		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerOneId()) 
 				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerTwoId())

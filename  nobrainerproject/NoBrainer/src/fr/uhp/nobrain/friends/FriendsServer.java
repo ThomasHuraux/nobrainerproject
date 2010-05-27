@@ -25,4 +25,9 @@ public class FriendsServer {
 		action = new Invite(player1, player2);
 		action.execute();
 	}
+	
+	public static void invite(int player1, int player2) {
+		action = new Invite(player1, player2);
+		action.execute();
+	}
 }

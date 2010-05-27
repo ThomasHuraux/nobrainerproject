@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.player.Player;
-import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
@@ -24,26 +23,15 @@ public class PlayerInvite extends Observable implements Model{
 	public PlayerInvite() throws Exception{
         Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
-        
-        int playerId = PlayerPersistance.select(Context.getCurrentPlayer());
-        Query q = s.createQuery("from Player");
+
+        Query q = s.createQuery("from Player where id != " + Context.getCurrentPlayer().getId());
         players = q.list();
-        filter(playerId);
-        
+
         s.close();
         
         (new PlayerInviteView()).initialize(this);
 	}
-	
-	private void filter(int playerId){
-		for(Player p : players){
-			if(playerId == p.getId()){
-				players.remove(p);
-				break;
-			}
-		}
-	}
-	
+
 	public List<Player> getPlayers() {
 		return players;
 	}

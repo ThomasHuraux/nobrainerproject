@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.player.PlayerPersistance;
 
 public class Context{
 	
@@ -35,7 +36,12 @@ public class Context{
 	}
 
 	public static void setCurrentPlayer(Player current) {
-		Context.current = current;
+		try {
+			Context.current = PlayerPersistance.select(current.getName());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

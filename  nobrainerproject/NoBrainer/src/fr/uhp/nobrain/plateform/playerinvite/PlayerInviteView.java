@@ -12,8 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import fr.uhp.nobrain.friends.Invitation;
+import fr.uhp.nobrain.friends.InvitationPersistance;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.player.PlayerPersistance;
+import fr.uhp.nobrain.tools.Context;
 
 public class PlayerInviteView extends JPanel implements View{
 	
@@ -46,7 +50,20 @@ public class PlayerInviteView extends JPanel implements View{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			invite.add(new JButton("Invite"));
+			try {
+				if (!InvitationPersistance.alreadyExists(new Invitation(Context.getCurrentPlayer().getId(),
+				PlayerPersistance.select(getNames().get(i).getText()).getId())))
+					invite.add(new JButton("Invite"));
+				else {
+					JButton button = new JButton("Sent");
+					button.setEnabled(false);
+					invite.add(button);
+					
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			JPanel line = new JPanel();
 			line.add(name.get(i));
