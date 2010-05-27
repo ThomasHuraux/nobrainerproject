@@ -16,8 +16,8 @@ import fr.uhp.nobrain.mvc.View;
 
 public class DemandView extends JPanel implements View{
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -8055665824238090941L;
+
 	private Demand demand;
 	
 	private JButton quit;
@@ -39,9 +39,10 @@ public class DemandView extends JPanel implements View{
 		inpan.setLayout(new GridLayout(demand.getInvitations().size(),1));
 		
 		boolean b = false;
+
 		for(int i = 0; i<demand.getInvitations().size();i++){
 			try {
-				name.add(new JLabel(demand.getInvitations().get(i).playerTwoName()));
+				name.add(new JLabel(demand.getInvitations().get(i).getPlayerOneName()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

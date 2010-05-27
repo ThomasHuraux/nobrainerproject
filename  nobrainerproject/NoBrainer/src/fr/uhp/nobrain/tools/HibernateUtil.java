@@ -3,7 +3,6 @@ package fr.uhp.nobrain.tools;
 import java.sql.*;
 
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -12,24 +11,26 @@ import org.hibernate.SessionFactory;
  * @author halaskaf
  */
 public class HibernateUtil {
-	private Session session;
-	private Statement st;
+	private static SessionFactory sessionFactory;
+	
+	private static Statement st;
 
-	public HibernateUtil() throws Exception{
-		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-		session = sessionFactory.openSession();
+	static{
+		try {
+		sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 
-		// Load the JDBC driver.
 		Class.forName("org.gjt.mm.mysql.Driver");
-		// Establish the connection to the database.
 		String url = "jdbc:mysql://localhost/NoBrainer";
 
 		Connection conn = DriverManager.getConnection(url, "root", "adminpwd");
 		st = conn.createStatement();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
-	public Session getSession() {
-		return session;
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;
 	}
 
 	public Statement getSt() {

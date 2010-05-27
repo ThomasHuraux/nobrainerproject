@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Transient;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 @Entity
@@ -36,8 +38,14 @@ public class Friends implements java.io.Serializable {
 
 	public Friends(Player player1, Player player2) {
 		super();
-		this.playerOneId = player1.getId();
-		this.playerTwoId = player2.getId();
+		try {
+			this.playerOneId = PlayerPersistance.select(player1);
+			this.playerTwoId = PlayerPersistance.select(player2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public Friends(int playerOneId, int playerTwoId) {
@@ -46,7 +54,7 @@ public class Friends implements java.io.Serializable {
 		this.playerTwoId = playerTwoId;
 	}
 
-	@Id
+	@Id @Column(name="friendshipId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getInvitationId() {
 		return id;
@@ -62,10 +70,10 @@ public class Friends implements java.io.Serializable {
 		return playerOneId;
 	}
 	
+	@Transient
 	@SuppressWarnings("unchecked")
 	public String getPlayerOneName() throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player");
@@ -101,10 +109,10 @@ public class Friends implements java.io.Serializable {
 		
 	}
 	
+	@Transient
 	@SuppressWarnings("unchecked")
 	public String getPlayerTwoName() throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player");

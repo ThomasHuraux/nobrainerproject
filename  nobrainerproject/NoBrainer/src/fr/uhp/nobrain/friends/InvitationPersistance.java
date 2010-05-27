@@ -11,8 +11,7 @@ public class InvitationPersistance {
 
 	@SuppressWarnings("unchecked")
 	public static int select(Invitation invitation) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		Query q = s.createQuery("from Invitation");
@@ -28,8 +27,7 @@ public class InvitationPersistance {
 
 	@SuppressWarnings("unchecked")
 	public static boolean alreadyExists(Invitation inv) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		Query q = s.createQuery("from Invitation");
@@ -45,13 +43,13 @@ public class InvitationPersistance {
 	}
 
 	public static boolean persist(Invitation i) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		boolean persist = false;
-		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerOneId()) || ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerTwoId())) {
-			if (alreadyExists(i))
+		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerOneId()) 
+				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerTwoId())
+				|| alreadyExists(i)) {
 				System.out.println("Invitation persist : Operation impossible.");
 		}
 		else {
@@ -67,8 +65,7 @@ public class InvitationPersistance {
 	}
 
 	public static boolean delete(Invitation invitation) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		boolean result = false;

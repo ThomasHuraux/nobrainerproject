@@ -24,23 +24,22 @@ public class Demand extends Observable implements Model{
 	@SuppressWarnings("unchecked")
 	public Demand() throws Exception{
 		current = Context.getCurrentPlayer();
-		HibernateUtil hibernateUtil = new HibernateUtil();
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
-        Query q = s.createQuery("from Invitation");
+        Query q = s.createQuery("from Invitation where playerTwoId = '" + Context.getCurrentPlayer().getId()+"'");
         invitations = q.list();
-        filter();
+//        filter();
         s.close();
         (new DemandView()).initialize(this);
 	}
 
-	
-	private void filter(){
-		for(Invitation i : invitations){
-			if(current.getId() != i.getPlayerTwoId())
-				invitations.remove(i);
-		}
-	}
+//	
+//	private void filter(){
+//		for(Invitation i : invitations){
+//			if(current.getId() != i.getPlayerTwoId())
+//				invitations.remove(i);
+//		}
+//	}
 	
 	public Player getCurrent() {
 		return current;

@@ -22,8 +22,7 @@ public class PlayerInvite extends Observable implements Model{
 	
 	@SuppressWarnings("unchecked")
 	public PlayerInvite() throws Exception{
-		HibernateUtil hibernateUtil = new HibernateUtil();
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
         
         int playerId = PlayerPersistance.select(Context.getCurrentPlayer());

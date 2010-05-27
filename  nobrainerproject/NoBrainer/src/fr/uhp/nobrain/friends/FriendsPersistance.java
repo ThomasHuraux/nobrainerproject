@@ -11,8 +11,7 @@ public class FriendsPersistance {
 
 	@SuppressWarnings("unchecked")
 	public static int select(Friends friendship) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		Query q = s.createQuery("from Friends");
@@ -28,15 +27,14 @@ public class FriendsPersistance {
 
 	@SuppressWarnings("unchecked")
 	public static boolean alreadyExists(Friends friendship) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		Query q = s.createQuery("from Friends");
-		List<Invitation> l = q.list();
+		List<Friends> l = q.list();
 
-		for (Invitation i : l)
-			if (i.equals(friendship))
+		for (Friends f : l)
+			if (f.equals(friendship))
 				return true;
 
 		s.close();
@@ -45,21 +43,21 @@ public class FriendsPersistance {
 	}
 
 	public static boolean persist(Friends friendship) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
-
+		
 		boolean persist = false;
+		
 		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(friendship.getPlayerOneId()) 
-				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(friendship.getPlayerTwoId())) {
-			if (alreadyExists(friendship))
+				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(friendship.getPlayerTwoId())
+				|| alreadyExists(friendship)) {
 				System.out.println("Friends persist : Operation impossible.");
 		}
 		else {
 			s.save(friendship);
 			persist = true;
 		}
-
+		
 		s.flush();
 		s.getTransaction().commit();
 		s.close();
@@ -68,8 +66,7 @@ public class FriendsPersistance {
 	}
 
 	public static boolean delete(Friends friendship) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		boolean result = false;

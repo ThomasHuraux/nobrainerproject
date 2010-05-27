@@ -11,8 +11,7 @@ import fr.uhp.nobrain.tools.HibernateUtil;
 public class PlayerPersistance {
 
 	public static boolean delete(Player player) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		boolean result = false;
@@ -38,14 +37,11 @@ public class PlayerPersistance {
 	 */
 	@SuppressWarnings("unchecked")
 	public static int select(Player player) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player");
 		List<Player> l = q.list();
-		
-		System.out.println("ENTER : "+player.getName()+" "+player.getPwd());
 		
 		for (Player p : l)
 			if (player.equals(p))
@@ -57,8 +53,7 @@ public class PlayerPersistance {
 	
 	@SuppressWarnings("unchecked")
 	public static Player select(String player) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player where name like '" + player + "'");
@@ -75,8 +70,7 @@ public class PlayerPersistance {
 	 * @throws Exception from HibernateUtil
 	 */
 	public static boolean persist(Player player) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
 		boolean persist = false;
@@ -102,8 +96,7 @@ public class PlayerPersistance {
 	 */
 	@SuppressWarnings("unchecked")
 	public static boolean alreadyExists(Player player) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		boolean exists = false;
@@ -127,8 +120,7 @@ public class PlayerPersistance {
 	 */
 	@SuppressWarnings("unchecked")
 	public static boolean alreadyExists(int playerId) throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		boolean exists = false;

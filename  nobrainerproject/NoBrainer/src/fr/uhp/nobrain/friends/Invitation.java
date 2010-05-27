@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 @Entity
@@ -26,8 +27,13 @@ public class Invitation implements java.io.Serializable {
 
 	public Invitation(Player player1, Player player2) {
 		super();
-		this.playerOneId = player1.getId();
-		this.playerTwoId = player2.getId();
+		try {
+			this.playerOneId = PlayerPersistance.select(player1);
+			this.playerTwoId = PlayerPersistance.select(player2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Invitation(int playerOneId, int playerTwoId) {
@@ -36,7 +42,7 @@ public class Invitation implements java.io.Serializable {
 		this.playerTwoId = playerTwoId;
 	}
 
-	@Id
+	@Id @Column(name="invitationId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getInvitationId() {
 		return id;
@@ -52,10 +58,10 @@ public class Invitation implements java.io.Serializable {
 		return playerOneId;
 	}
 	
+	@Transient
 	@SuppressWarnings("unchecked")
-	public String playerOneName() throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+	public String getPlayerOneName() throws Exception {
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player");
@@ -73,6 +79,10 @@ public class Invitation implements java.io.Serializable {
 		this.playerOneId = playerOneId;
 	}
 	
+	public void setPlayerOneName(String name) {
+		
+	}
+	
 	@Id
 	@Column(name="playerTwoId",insertable=false,updatable=false)
 	public int getPlayerTwoId() {
@@ -83,10 +93,14 @@ public class Invitation implements java.io.Serializable {
 		this.playerTwoId = playerTwoId;
 	}
 	
+	public void setPlayerTwoName(String name) {
+		
+	}
+	
+	@Transient
 	@SuppressWarnings("unchecked")
-	public String playerTwoName() throws Exception {
-		HibernateUtil hibernateUtil = new HibernateUtil();
-		Session s = hibernateUtil.getSession();
+	public String getPlayerTwoName() throws Exception {
+		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
 		Query q = s.createQuery("from Player");
@@ -113,4 +127,18 @@ public class Invitation implements java.io.Serializable {
 	public int hashCode() {
 		return ((Integer)playerOneId).hashCode() ^ ((Integer)playerTwoId).hashCode();
 	}
+	
+	public static void main(String[] args) throws Exception{ 
+			Player player1 = new Player("toto", "ght1pca3");
+			Player player2 = new Player("tof", "ght1pca3");
+	
+			PlayerPersistance.persist(player1);
+			PlayerPersistance.persist(player2);
+		
+//			PlayerPersistance.delete(player2);
+			Invitation i = new Invitation(player1, player2);
+			Friends f = new Friends(player1,player2);
+			InvitationPersistance.persist(i);
+			FriendsPersistance.persist(f);
+		}
 }
