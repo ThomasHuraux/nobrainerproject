@@ -46,7 +46,6 @@ public class EndgameView extends JPanel implements View{
 		buttons.setBackground(Color.BLACK);
 		
 		
-		
 		JPanel center = new JPanel();
 		center.setLayout(new BorderLayout());
 		center.setPreferredSize(new Dimension(700,500));

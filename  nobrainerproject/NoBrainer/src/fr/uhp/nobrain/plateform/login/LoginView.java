@@ -1,8 +1,10 @@
 package fr.uhp.nobrain.plateform.login;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,16 +23,21 @@ public class LoginView extends JPanel implements View{
 	private JButton ok;
 	private JButton create;
 	
+	private JLabel logo;
+	
 	public void initialize(Model model){
 		
-		nickname = new JTextField();
-		pass = new JPasswordField();
+		nickname = new JTextField(10);
+		pass = new JPasswordField(10);
 		
 		ok = new JButton("OK");
 		create = new JButton("Create an account");
 		
+		String imgPath = ((Login) model).getLogoPath();
+		logo = new JLabel(new ImageIcon(imgPath));
+		
 		JPanel nicknameP = new JPanel();
-		nicknameP.add(new JLabel("Nickname"));
+		nicknameP.add(new JLabel("Login      "));
 		nicknameP.add(nickname);
 		
 		JPanel passP = new JPanel();
@@ -41,10 +48,15 @@ public class LoginView extends JPanel implements View{
 		buttons.add(create);
 		buttons.add(ok);
 		
-		setLayout(new GridLayout(3,1));
-		add(nicknameP);
-		add(passP);
-		add(buttons);
+		JPanel form = new JPanel();
+		form.setLayout(new GridLayout(3,1));
+		form.add(nicknameP);
+		form.add(passP);
+		form.add(buttons);
+		
+		setLayout(new BorderLayout());
+		add(logo,BorderLayout.CENTER);
+		add(form,BorderLayout.SOUTH);
 		
 		model.attach(this);
 		makeController();

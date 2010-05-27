@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
@@ -32,10 +34,10 @@ public class LoginController implements Controller {
 						Context.setCurrentPlayer(player);
 						mn = new MainMenu();
 						Context.change(mn);
-					}
+					}else JOptionPane.showMessageDialog(view, this,"Wrong password or username",JOptionPane.ERROR_MESSAGE);
 					
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(view,e1,"Error",JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 					

@@ -5,13 +5,14 @@ import java.util.Observer;
 
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
-import fr.uhp.nobrain.plateform.register.RegisterView;
 
 public class Login extends Observable implements Model{
 
 	private View view;
+	private String logoPath;
 	
 	public Login(){
+		logoPath = "img/nobrainer.png";
 		(new LoginView()).initialize(this);
 	}
 	
@@ -24,8 +25,12 @@ public class Login extends Observable implements Model{
 		this.deleteObserver(view);
 	}
 
-	public RegisterView getView() {
-		return (RegisterView) view;
+	public LoginView getView() {
+		return (LoginView) view;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
 	}
 
 }
