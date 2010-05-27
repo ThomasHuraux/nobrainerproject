@@ -63,6 +63,18 @@ public class PlayerPersistance {
 		return l.get(0);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static Player select(int player) throws Exception {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		
+		Query q = s.createQuery("from Player where id = '" + player + "'");
+		List<Player> l = q.list();
+		
+		s.close();
+		return l.get(0);
+	}
+	
 	/**
 	 * Persist a player in the DB.
 	 * @param player
