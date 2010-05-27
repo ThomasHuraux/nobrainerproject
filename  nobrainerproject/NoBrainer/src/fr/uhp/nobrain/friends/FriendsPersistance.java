@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import fr.uhp.nobrain.player.Player;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class FriendsPersistance {
@@ -39,6 +40,21 @@ public class FriendsPersistance {
 
 		s.close();
 
+		return false;
+	}
+	
+	public static boolean areFriends(Player p1, Player p2){
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+
+		Query q = s.createQuery("from Friends");
+		List<Friends> l = q.list();
+
+		for (Friends f : l)
+			if((f.getPlayerOneId() == p1.getId() && f.getPlayerTwoId() == p2.getId())
+					||(f.getPlayerOneId() == p2.getId() && f.getPlayerTwoId() == p1.getId()))
+				return true;
+		
 		return false;
 	}
 

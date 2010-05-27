@@ -11,7 +11,7 @@ import fr.uhp.nobrain.player.Player;
 
 @Entity
 @Table(name="HighScore")
-public class Score implements java.io.Serializable {
+public class Score implements java.io.Serializable ,java.lang.Comparable<Score>  {
 
 	private static final long serialVersionUID = 1596945168358558464L;
 	private int scoreId;
@@ -90,6 +90,14 @@ public class Score implements java.io.Serializable {
 		return false;
 	}
 
+	public int compareTo(Score other) {
+		 int n1 = other.getScore(); 
+	     int n2 = this.getScore(); 
+	     if (n1 > n2)  return -1;
+	     else if(n1 == n2) return 0; 
+	     else return 1; 
+	}
+	
 	@Override
 	public int hashCode() {
 		return ((Integer)playerId).hashCode() ^ ((Integer)level).hashCode() ^ ((Integer)score).hashCode();

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import fr.uhp.nobrain.highscore.HighScore;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
@@ -33,7 +34,8 @@ public class MainMenuController implements Controller{
 		
 		((MainMenuView) view).getStatsButton().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("stats");
+				HighScore hs = new HighScore();
+				Context.change(hs);
 			}
 		});
 		

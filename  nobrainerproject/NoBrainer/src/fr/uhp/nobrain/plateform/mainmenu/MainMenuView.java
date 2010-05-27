@@ -31,8 +31,8 @@ public class MainMenuView extends JPanel implements View{
 		this.model = model;
 		
 		logoutButton = new JButton("Quit");
-		statsButton = new JButton("Stats");
-		friendsButton = new JButton("Friends");
+		statsButton = new JButton("Highscore");
+		friendsButton = new JButton("Manage friends");
 		playButton = new JButton("Play");
 		
 		JPanel buttons = new JPanel();

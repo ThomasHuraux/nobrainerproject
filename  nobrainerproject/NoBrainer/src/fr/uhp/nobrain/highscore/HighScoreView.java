@@ -2,13 +2,16 @@ package fr.uhp.nobrain.highscore;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.player.PlayerPersistance;
 
 public class HighScoreView extends JPanel implements View{
 
@@ -17,22 +20,36 @@ public class HighScoreView extends JPanel implements View{
 	private JTable table;
 	private HighScore model;
 	
-	public HighScoreView(ArrayList<ScoreControl> scores,int level) {
+	public HighScoreView(List<Score> scores) {
 		
-		ArrayList<ScoreControl> filter = new ArrayList<ScoreControl>();
-		for(ScoreControl s : scores)
-			if(s.getScoreModel().getLevel() == level)
-				filter.add(s);
-		
-		Collections.sort(filter);
-		
-		Object[][] data = new Object[scores.size()][titles.length];
-		for(int i = 0; i<filter.size(); i++){
-			data[i][0] = i;
-			data[i][1] = filter.get(i).getScoreModel().getPlayerId();
-			data[i][2] = filter.get(i).getScore();
+		JTabbedPane pane = new JTabbedPane();
+		for(int level=0;level<3;level++){
+			
+			ArrayList<Score> filter = new ArrayList<Score>();
+			for(Score s : scores)
+				if(s.getLevel() == level)
+					filter.add(s);
+			
+			Collections.sort(filter);
+			
+			Object[][] data = new Object[scores.size()][titles.length];
+			for(int i = 0; i<filter.size(); i++){
+				data[i][0] = i;
+				try {
+					data[i][1] = PlayerPersistance.select(filter.get(i).getPlayerId()).getName();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				data[i][2] = filter.get(i).getScore();
+			}
+			table = new JTable(data,titles);
+			
+			JPanel panel = new JPanel();
+			panel.add(table);
+			
+			pane.addTab("Level"+level+1, panel);
 		}
-		table = new JTable(data,titles);
 		
 		add(table);
 		

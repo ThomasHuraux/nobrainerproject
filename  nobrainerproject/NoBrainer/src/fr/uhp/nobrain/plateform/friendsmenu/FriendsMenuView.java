@@ -37,7 +37,7 @@ public class FriendsMenuView extends JPanel implements View{
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(4,1));
-		buttons.add(friendButton);
+		//buttons.add(friendButton);
 		buttons.add(invitationButton);
 		buttons.add(demandButton);
 		buttons.add(returnButton);
