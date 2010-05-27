@@ -7,9 +7,9 @@ import java.util.Observer;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import fr.uhp.nobrain.friends.Invitation;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.player.Player;
 import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
@@ -18,7 +18,7 @@ public class PlayerInvite extends Observable implements Model{
 	
 	private View view;
 	
-	private List<Invitation> invitations;
+	private List<Player> players;
 	
 	@SuppressWarnings("unchecked")
 	public PlayerInvite() throws Exception{
@@ -27,18 +27,26 @@ public class PlayerInvite extends Observable implements Model{
         s.beginTransaction();
         
         int playerId = PlayerPersistance.select(Context.getCurrentPlayer());
-        Query q = s.createQuery("from Invitation where playerOneId = "+playerId);
-        
-        invitations = q.list();
+        Query q = s.createQuery("from Player");
+        players = q.list();
+        filter(playerId);
         
         s.close();
         
         (new PlayerInviteView()).initialize(this);
 	}
 	
-
-	public List<Invitation> getInvitations() {
-		return invitations;
+	private void filter(int playerId){
+		for(Player p : players){
+			if(playerId == p.getId()){
+				players.remove(p);
+				break;
+			}
+		}
+	}
+	
+	public List<Player> getPlayers() {
+		return players;
 	}
 
 

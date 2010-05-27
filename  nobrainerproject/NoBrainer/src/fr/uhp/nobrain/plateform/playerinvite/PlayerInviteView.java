@@ -32,14 +32,16 @@ public class PlayerInviteView extends JPanel implements View{
 		invite = new ArrayList<JButton>();
 		returnB = new JButton("Return");
 		
-		JScrollPane jsp = new JScrollPane();
 		JPanel inpan = new JPanel();
-		inpan.setLayout(new GridLayout(model.getInvitations().size(),1));
+		inpan.setLayout(new GridLayout(model.getPlayers().size(),1));
 		
 		boolean b = false;
-		for(int i = 0; i<model.getInvitations().size();i++){
+		for(int i = 0; i<model.getPlayers().size();i++){
 			try {
-				name.add(new JLabel(model.getInvitations().get(i).playerTwoName()));
+				JLabel l = new JLabel(model.getPlayers().get(i).getName());
+				l.setPreferredSize(new Dimension(180,20));
+				l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+				name.add(l);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,11 +56,13 @@ public class PlayerInviteView extends JPanel implements View{
 				line.setBackground(Color.lightGray);
 			
 			b = !b;
+			line.setPreferredSize(new Dimension(290,20));
 			inpan.add(line);
 		}
 		
-		jsp.add(inpan);
-		jsp.setPreferredSize(new Dimension(290,440));
+
+		inpan.setPreferredSize(new Dimension(290,440));
+		JScrollPane jsp = new JScrollPane(inpan);
 		
 		setLayout(new BorderLayout());
 		add(jsp,BorderLayout.CENTER);
