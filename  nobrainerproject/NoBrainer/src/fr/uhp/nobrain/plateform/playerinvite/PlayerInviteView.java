@@ -30,11 +30,16 @@ public class PlayerInviteView extends JPanel implements View{
 		
 		JScrollPane jsp = new JScrollPane();
 		JPanel inpan = new JPanel();
-		inpan.setLayout(new GridLayout(model.getPlayers().size(),1));
+		inpan.setLayout(new GridLayout(model.getInvitations().size(),1));
 		
 		boolean b = false;
-		for(int i = 0; i<model.getPlayers().size();i++){
-			name.add(new JLabel(model.getPlayers().get(i).getName()));
+		for(int i = 0; i<model.getInvitations().size();i++){
+			try {
+				name.add(new JLabel(model.getInvitations().get(i).getPlayerTwoName()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			invite.add(new JButton("Invite"));
 			
 			JPanel line = new JPanel();

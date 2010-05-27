@@ -7,10 +7,11 @@ import java.util.Observer;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import fr.uhp.nobrain.friends.Invitation;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.register.RegisterView;
-import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
@@ -18,36 +19,27 @@ public class PlayerInvite extends Observable implements Model{
 	
 	private View view;
 	
-	private Player current;
-	private List<Player> players;
+	private List<Invitation> invitations;
 	
 	@SuppressWarnings("unchecked")
 	public PlayerInvite() throws Exception{
-		current = Context.getCurrentPlayer();
 		HibernateUtil hibernateUtil = new HibernateUtil();
         Session s = hibernateUtil.getSession();
         s.beginTransaction();
-        Query q = s.createQuery("from Player");
-        players = q.list();
-        filter();
+        
+        int playerId = PlayerPersistance.select(Context.getCurrentPlayer());
+        Query q = s.createQuery("from Invitation where playerOneId = "+playerId);
+        
+        invitations = q.list();
+        
         s.close();
         
         (new PlayerInviteView()).initialize(this);
 	}
 	
-	private void filter(){
-		for(Player p : players){
-			if(current.getId() == p.getId() || current.isFriend(p))
-				players.remove(p);
-		}
-	}
-	
-	public Player getCurrent() {
-		return current;
-	}
 
-	public List<Player> getPlayers() {
-		return players;
+	public List<Invitation> getInvitations() {
+		return invitations;
 	}
 
 

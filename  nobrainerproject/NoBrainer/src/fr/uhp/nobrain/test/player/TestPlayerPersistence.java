@@ -66,7 +66,34 @@ public class TestPlayerPersistence {
 		
 	}
 
+	@Test
+	public void testSelectSuccess() {
+		setUp();
+		
+		try {
+			assertTrue(PlayerPersistance.select(player) >= 0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
 
+	@Test
+	public void testSelectFailure() {
+		setUp();
+		
+		try {
+			assertTrue(PlayerPersistance.select(new Player("Titi", "Grosminet")) == -1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
+	
 	//	public static void main(String[] args) throws Exception{ 
 	//		Player player1 = new Player("toto", "ght1pca3");
 	//		Player player2 = new Player("tof", "ght1pca3");

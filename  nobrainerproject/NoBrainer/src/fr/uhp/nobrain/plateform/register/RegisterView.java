@@ -1,5 +1,6 @@
 package fr.uhp.nobrain.plateform.register;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Observable;
 
@@ -28,40 +29,40 @@ public class RegisterView extends JPanel implements View{
 	
 	public void initialize(Model model){
 		
-		lastname = new JTextField();
-		firstname = new JTextField();
-		nickname = new JTextField();
-		date = new JTextField();
-		pass = new JPasswordField();
-		confirm = new JPasswordField();
+		(lastname = new JTextField()).setPreferredSize(new Dimension(100, 15));
+		(firstname = new JTextField()).setPreferredSize(new Dimension(100, 15));
+		(nickname = new JTextField()).setPreferredSize(new Dimension(100, 15));
+		(date = new JTextField()).setPreferredSize(new Dimension(100, 15));
+		(pass = new JPasswordField()).setPreferredSize(new Dimension(100, 15));
+		(confirm = new JPasswordField()).setPreferredSize(new Dimension(100, 15));
 		
 		ok = new JButton("OK");
 		returnB = new JButton("Return");
-		
+
 		JPanel lastnameP = new JPanel();
 		lastnameP.add(new JLabel("Lastname"));
 		lastnameP.add(lastname);
-		
+		lastnameP.setPreferredSize(new Dimension(100, 10));
 		JPanel firstnameP = new JPanel();
 		firstnameP.add(new JLabel("Firstname"));
 		firstnameP.add(firstname);
-		
+		firstnameP.setPreferredSize(new Dimension(100, 10));
 		JPanel nicknameP = new JPanel();
 		nicknameP.add(new JLabel("Nickname"));
 		nicknameP.add(nickname);
-		
+		nicknameP.setPreferredSize(new Dimension(100, 10));
 		JPanel dateP = new JPanel();
 		dateP.add(new JLabel("Birth date"));
 		dateP.add(date);
-		
+		dateP.setPreferredSize(new Dimension(100, 10));
 		JPanel passP = new JPanel();
 		passP.add(new JLabel("Password"));
 		passP.add(pass);
-		
+		passP.setPreferredSize(new Dimension(100, 10));
 		JPanel confirmP = new JPanel();
 		confirmP.add(new JLabel("Confirm password"));
 		confirmP.add(confirm);
-		
+		confirmP.setPreferredSize(new Dimension(100, 10));
 		setLayout(new GridLayout(8,1));
 		add(lastnameP);
 		add(firstnameP);

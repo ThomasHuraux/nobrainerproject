@@ -4,11 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
-import fr.uhp.nobrain.friends.Action;
-import fr.uhp.nobrain.friends.Invite;
+import fr.uhp.nobrain.friends.FriendsServer;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.player.PlayerPersistance;
+import fr.uhp.nobrain.tools.Context;
 
 public class PlayerInviteController implements Controller{
 
@@ -20,8 +21,14 @@ public class PlayerInviteController implements Controller{
 			final int id = i;
 			((PlayerInviteView)view).getInvite().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					Action invitation = new Invite(((PlayerInvite)model).getCurrent().getId(),((PlayerInvite)model).getPlayers().get(id).getId());	
-					invitation.execute();
+					try {
+						FriendsServer.invite(Context.getCurrentPlayer(),PlayerPersistance.select(piv.getNames().get(id).getText()));
+						piv.getInvite().get(id).setEnabled(false);
+						piv.getInvite().get(id).setText("Sent");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 		}

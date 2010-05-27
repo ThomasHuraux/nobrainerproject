@@ -25,7 +25,7 @@ public class RegisterController implements Controller{
 			public void actionPerformed(ActionEvent e) {
 				
 				if (view.getPass().getText().equals(view.getConfirm().getText())) {
-					Player player = new Player(view.getName(), view.getPass().getText());
+					Player player = new Player(view.getNickname().getText(), view.getPass().getText());
 					try {
 						PlayerPersistance.persist(player);
 					} catch (Exception e1) {

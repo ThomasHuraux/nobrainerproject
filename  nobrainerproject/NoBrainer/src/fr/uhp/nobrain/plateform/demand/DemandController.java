@@ -23,7 +23,7 @@ public class DemandController implements Controller {
 			
 			view.getAccepts().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					// Accept with object fr.uhp.nobrain.friends.Accept
+					
 				}
 			});
 			

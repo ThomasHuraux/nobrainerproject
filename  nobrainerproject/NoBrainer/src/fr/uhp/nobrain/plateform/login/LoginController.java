@@ -7,8 +7,14 @@ import java.util.Observable;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
 import fr.uhp.nobrain.plateform.register.Register;
+
+import fr.uhp.nobrain.player.Player;
+import fr.uhp.nobrain.player.PlayerPersistance;
+
 import fr.uhp.nobrain.tools.Context;
+
 
 public class LoginController implements Controller {
 
@@ -19,8 +25,20 @@ public class LoginController implements Controller {
 		
 		ActionListener alOk = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
-				// Treat OK
+				Player player = new Player(view.getName(), view.getPass().toString());
+				MainMenu mn;
+				try {
+					if (PlayerPersistance.select(player) >= 0) {
+						Context.setCurrentPlayer(player);
+						mn = new MainMenu();
+						Context.change(mn);
+					}
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
 			}
 			
 		};

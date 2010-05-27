@@ -13,6 +13,6 @@
         <mapping class="fr.uhp.nobrain.player.Player"/>
         <mapping class="fr.uhp.nobrain.friends.Invitation"/>
         <mapping class="fr.uhp.nobrain.friends.Friends"/>
-        <mapping class="fr.uhp.nobrain.highscore.ScoreModel"/>
+        <mapping class="fr.uhp.nobrain.highscore.Score"/>
     </session-factory>
 </hibernate-configuration>

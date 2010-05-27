@@ -53,6 +53,19 @@ public class PlayerPersistance {
 		return -1;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static Player select(String player) throws Exception {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session s = hibernateUtil.getSession();
+		s.beginTransaction();
+		
+		Query q = s.createQuery("from Player where name like '" + player + "'");
+		List<Player> l = q.list();
+		
+		s.close();
+		return l.get(0);
+	}
+	
 	/**
 	 * Persist a player in the DB.
 	 * @param player
