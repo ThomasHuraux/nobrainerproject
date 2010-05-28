@@ -1,10 +1,13 @@
 package fr.uhp.nobrain.highscore;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -20,6 +23,8 @@ public class HighScoreView extends JPanel implements View{
 	private JTable table;
 	private HighScore model;
 	
+	private JButton returnB;
+	
 	public HighScoreView(List<Score> scores) {
 		
 		JTabbedPane pane = new JTabbedPane();
@@ -34,7 +39,7 @@ public class HighScoreView extends JPanel implements View{
 			
 			Object[][] data = new Object[scores.size()][titles.length];
 			for(int i = 0; i<filter.size(); i++){
-				data[i][0] = i;
+				data[i][0] = i+1;
 				try {
 					data[i][1] = PlayerPersistance.select(filter.get(i).getPlayerId()).getName();
 				} catch (Exception e) {
@@ -51,8 +56,19 @@ public class HighScoreView extends JPanel implements View{
 			pane.addTab("Level"+level+1, panel);
 		}
 		
-		add(table);
+		returnB = new JButton("Return");
 		
+		setPreferredSize(new Dimension(290,440));
+		setLayout(new BorderLayout());
+;		add(table,BorderLayout.CENTER);
+		add(returnB,BorderLayout.SOUTH);
+		
+		makeController();
+		
+	}
+	
+	public JButton getReturnB(){
+		return returnB;
 	}
 
 	@Override

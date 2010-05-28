@@ -4,24 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
-import javax.swing.Timer;
-
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
+import fr.uhp.nobrain.tools.Context;
 
 public class HighScoreController implements Controller {
 
 	@Override
 	public void initialize(final Model model, final View view) {
-		ActionListener updatePerformer = new ActionListener(){
-			public void actionPerformed(ActionEvent evt){
-				((HighScoreView)view).update((Observable) model,null);
-			}
-		};
 		
-		Timer refresh = new Timer(1000,updatePerformer);
-		refresh.start();
+		((HighScoreView)view).getReturnB().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				MainMenu mm = new MainMenu();
+				Context.change(mm);
+			}
+		});
+		
 	}
 
 	@Override
