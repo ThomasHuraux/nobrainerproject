@@ -41,12 +41,12 @@ public class HighScoreView extends JPanel implements View{
 			for(int i = 0; i<filter.size(); i++){
 				data[i][0] = i+1;
 				try {
-					data[i][1] = PlayerPersistance.select(model.getScores().get(i).getPlayerId()).getName();
+					data[i][1] = PlayerPersistance.select(filter.get(i).getPlayerId()).getName();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				data[i][2] = model.getScores().get(i).getScore();
+				data[i][2] = filter.get(i).getScore();
 			}
 			table = new JTable(data,titles);
 			

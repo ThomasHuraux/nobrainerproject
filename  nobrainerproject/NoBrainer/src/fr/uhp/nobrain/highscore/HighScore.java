@@ -45,8 +45,6 @@ public class HighScore extends Observable implements Model{
 		
 		Query q = s.createQuery("from Score");
 		scores = q.list();
-		for (int i = 0; i < scores.size(); i++)
-			System.out.println(scores.get(i).getScoreId() + " " + scores.get(i).getLevel() + " " + scores.get(i).getPlayerId() + " " + scores.get(i).getScore());
 		
 		try {
 			for(Score f : scores)

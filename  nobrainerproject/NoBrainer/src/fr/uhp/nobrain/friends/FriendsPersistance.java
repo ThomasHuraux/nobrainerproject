@@ -19,8 +19,10 @@ public class FriendsPersistance {
 		List<Invitation> l = q.list();
 
 		for (Invitation i : l)
-			if (friendship.equals(i))
+			if (friendship.equals(i)) {
+				s.close();
 				return i.getInvitationId();
+			}
 
 		s.close();
 		return -1;
@@ -35,8 +37,10 @@ public class FriendsPersistance {
 		List<Friends> l = q.list();
 
 		for (Friends f : l)
-			if (f.equals(friendship))
+			if (f.equals(friendship)) {
+				s.close();
 				return true;
+			}
 
 		s.close();
 
@@ -57,6 +61,7 @@ public class FriendsPersistance {
 				s.close();
 				return true;
 			}
+		s.close();
 		return false;
 	}
 

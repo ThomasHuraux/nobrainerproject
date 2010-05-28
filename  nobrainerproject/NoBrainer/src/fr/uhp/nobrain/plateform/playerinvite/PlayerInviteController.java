@@ -29,10 +29,11 @@ public class PlayerInviteController implements Controller{
 			((PlayerInviteView)view).getInvite().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					try {
-						System.out.println(Context.getCurrentPlayer().getId() + " " + PlayerPersistance.select(piv.getNames().get(id).getText()).getId());
-						FriendsServer.invite(Context.getCurrentPlayer(),PlayerPersistance.select(piv.getNames().get(id).getText()));
-						piv.getInvite().get(id).setEnabled(false);
-						piv.getInvite().get(id).setText("Sent");
+						if (Context.getCurrentPlayer() !=PlayerPersistance.select(piv.getNames().get(id).getText())) {
+							FriendsServer.invite(Context.getCurrentPlayer(),PlayerPersistance.select(piv.getNames().get(id).getText()));
+							piv.getInvite().get(id).setEnabled(false);
+							piv.getInvite().get(id).setText("Sent");
+						}
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
