@@ -1,7 +1,7 @@
 package fr.uhp.nobrain.test.player;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -51,7 +51,7 @@ public class TestPlayerPersistence {
 	}
 	
 	@Test
-	public void testAlreadyExists() {
+	public void testAlreadyExistsByObjectSuccess() {
 		setUp();
 		try {
 			PlayerPersistance.persist(player);
@@ -62,16 +62,58 @@ public class TestPlayerPersistence {
 			e.printStackTrace();
 		} finally {
 			tearDown();
-		}
-		
+		}		
 	}
 
 	@Test
-	public void testSelectSuccess() {
+	public void testAlreadyExistsByObjectFailure() {
+		setUp();
+		try {
+			assertFalse(PlayerPersistance.alreadyExists(player));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			tearDown();
+		}	
+	}
+	
+	@Test
+	public void testAlreadyExistsByIdSuccess() {
+		setUp();
+		try {
+			PlayerPersistance.persist(player);
+			assertTrue(PlayerPersistance.alreadyExists(player.getId()));
+			PlayerPersistance.delete(player);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			tearDown();
+		}	
+	}
+	
+	@Test
+	public void testAlreadyExistsByIdFailure() {
+		setUp();
+		try {
+			assertFalse(PlayerPersistance.alreadyExists(player.getId()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			tearDown();
+		}	
+	}
+	
+	@Test
+	public void testSelectByObjectSuccess() {
 		setUp();
 		
 		try {
-			assertTrue(PlayerPersistance.select(player) >= 0);
+			PlayerPersistance.persist(player);
+			assertTrue(PlayerPersistance.select(player) != -1);
+			PlayerPersistance.delete(player);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,7 +123,7 @@ public class TestPlayerPersistence {
 	}
 
 	@Test
-	public void testSelectFailure() {
+	public void testSelectByObjectFailure() {
 		setUp();
 		
 		try {
@@ -94,22 +136,63 @@ public class TestPlayerPersistence {
 		tearDown();
 	}
 	
-	//	public static void main(String[] args) throws Exception{ 
-	//		Player player1 = new Player("toto", "ght1pca3");
-	//		Player player2 = new Player("tof", "ght1pca3");
-	//
-	//		PlayerPersistance.persist(player1);
-	//		PlayerPersistance.persist(player2);
-	//	
-	//		PlayerPersistance.delete(player2);
-	//		Invitation i = new Invitation(player1, player2);
-	//		
-	//		FriendsPersistance.persist(i);
-	//
-	//		ScoreModel sm = new ScoreModel(3, PlayerPersistance.select(player1));
-	//		sm.setScore(125);
-	//		
-	//		ScorePersistance.persist(sm);
-	//	}
+	@Test
+	public void testSelectByNameSuccess() {
+		setUp();
+		
+		try {
+			PlayerPersistance.persist(player);
+			assertNotNull(PlayerPersistance.select(player.getName()));
+			PlayerPersistance.delete(player);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
 
+	@Test
+	public void testSelectByNameFailure() {
+		setUp();
+		
+		try {
+			assertNull(PlayerPersistance.select(player.getName()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
+	
+	@Test
+	public void testSelectByIdSuccess() {
+		setUp();
+		
+		try {
+			PlayerPersistance.persist(player);
+			assertNotNull(PlayerPersistance.select(player.getId()));
+			PlayerPersistance.delete(player);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
+
+	@Test
+	public void testSelectByIdFailure() {
+		setUp();
+		
+		try {
+			assertNull(PlayerPersistance.select(player.getId()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tearDown();
+	}
 }

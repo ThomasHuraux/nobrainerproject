@@ -16,11 +16,10 @@ public class PlayerPersistance {
 		
 		boolean result = false;
 		
-		if (alreadyExists(player)) {
-			player.setId(select(player));
-			s.delete(player);
-			s.flush();
-		}
+		player.setId(select(player));
+		s.delete(player);
+		s.flush();
+
 		if (!alreadyExists(player))
 			result = true;
 			
@@ -60,6 +59,7 @@ public class PlayerPersistance {
 		List<Player> l = q.list();
 		
 		s.close();
+		if (l == null || l.isEmpty()) return null;
 		return l.get(0);
 	}
 	
@@ -72,6 +72,7 @@ public class PlayerPersistance {
 		List<Player> l = q.list();
 		
 		s.close();
+		if (l == null || l.isEmpty()) return null;
 		return l.get(0);
 	}
 	

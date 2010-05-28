@@ -14,5 +14,6 @@
         <mapping class="fr.uhp.nobrain.friends.Invitation"/>
         <mapping class="fr.uhp.nobrain.friends.Friends"/>
         <mapping class="fr.uhp.nobrain.highscore.Score"/>
+        <mapping class="fr.uhp.nobrain.highscore.HighScore"/>
     </session-factory>
 </hibernate-configuration>
