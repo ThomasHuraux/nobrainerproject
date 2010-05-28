@@ -26,6 +26,14 @@ public class HighScore extends Observable implements Model{
 		scores.add(s);
 	}
 
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
+
 	public HighScoreView getGraphView() {
 		return null;
 	}
@@ -37,7 +45,9 @@ public class HighScore extends Observable implements Model{
 		
 		Query q = s.createQuery("from Score");
 		scores = q.list();
-
+		for (int i = 0; i < scores.size(); i++)
+			System.out.println(scores.get(i).getScoreId() + " " + scores.get(i).getLevel() + " " + scores.get(i).getPlayerId() + " " + scores.get(i).getScore());
+		
 		try {
 			for(Score f : scores)
 				if(! FriendsPersistance.areFriends(Context.getCurrentPlayer(), PlayerPersistance.select(f.getPlayerId())))
@@ -46,7 +56,9 @@ public class HighScore extends Observable implements Model{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return new HighScoreView(scores);
+		s.close();
+		
+		return new HighScoreView(this);
 	}
 
 	@Override

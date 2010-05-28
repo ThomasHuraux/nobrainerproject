@@ -4,11 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
@@ -25,42 +25,40 @@ public class HighScoreView extends JPanel implements View{
 	
 	private JButton returnB;
 	
-	public HighScoreView(List<Score> scores) {
+	public HighScoreView(HighScore model) {
 		
 		JTabbedPane pane = new JTabbedPane();
 		for(int level=0;level<3;level++){
 			
 			ArrayList<Score> filter = new ArrayList<Score>();
-			for(Score s : scores)
+			for(Score s : model.getScores())
 				if(s.getLevel() == level)
 					filter.add(s);
-			
-			Collections.sort(filter);
-			
-			Object[][] data = new Object[scores.size()][titles.length];
+//			
+//			Collections.sort(filter);
+	
+			Object[][] data = new Object[filter.size()][titles.length];
 			for(int i = 0; i<filter.size(); i++){
 				data[i][0] = i+1;
 				try {
-					data[i][1] = PlayerPersistance.select(filter.get(i).getPlayerId()).getName();
+					data[i][1] = PlayerPersistance.select(model.getScores().get(i).getPlayerId()).getName();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				data[i][2] = filter.get(i).getScore();
+				data[i][2] = model.getScores().get(i).getScore();
 			}
 			table = new JTable(data,titles);
 			
-			JPanel panel = new JPanel();
-			panel.add(table);
-			
-			pane.addTab("Level"+level+1, panel);
+			JScrollPane sp = new JScrollPane(table);
+			pane.addTab("Level "+(level+1), sp);
 		}
 		
 		returnB = new JButton("Return");
 		
 		setPreferredSize(new Dimension(290,440));
 		setLayout(new BorderLayout());
-;		add(table,BorderLayout.CENTER);
+;		add(pane,BorderLayout.CENTER);
 		add(returnB,BorderLayout.SOUTH);
 		
 		makeController();
