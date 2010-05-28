@@ -34,7 +34,7 @@ public class HighScore extends Observable implements Model{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
-		Query q = s.createQuery("from HighScore");
+		Query q = s.createQuery("from Score");
 		scores = q.list();
 
 		try {

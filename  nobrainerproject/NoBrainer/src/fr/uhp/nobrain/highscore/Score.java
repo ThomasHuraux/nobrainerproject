@@ -5,12 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import fr.uhp.nobrain.player.Player;
 
 @Entity
-@Table(name="HighScore")
 public class Score implements java.io.Serializable ,java.lang.Comparable<Score>  {
 
 	private static final long serialVersionUID = 1596945168358558464L;
