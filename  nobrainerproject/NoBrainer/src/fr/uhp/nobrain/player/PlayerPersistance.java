@@ -42,12 +42,15 @@ public class PlayerPersistance {
 		Query q = s.createQuery("from Player");
 		List<Player> l = q.list();
 		
+		int id = -1;
+		
 		for (Player p : l)
 			if (player.equals(p))
-				return p.getId();
+				id = p.getId();
 
 		s.close();
-		return -1;
+		System.out.println("SELECT ID " + l.get(0).getId());
+		return id;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -60,6 +63,7 @@ public class PlayerPersistance {
 		
 		s.close();
 		if (l == null || l.isEmpty()) return null;
+		System.out.println("\nSELECT " + l.get(0).getName() +"\n");
 		return l.get(0);
 	}
 	
@@ -68,7 +72,7 @@ public class PlayerPersistance {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
-		Query q = s.createQuery("from Player where id = '" + player + "'");
+		Query q = s.createQuery("from Player where id = " + player);
 		List<Player> l = q.list();
 		
 		s.close();

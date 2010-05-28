@@ -58,7 +58,7 @@ public class TimerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotNull(instance.getTimer().getTimeRemaining() == t-2);
+		assertTrue(instance.getTimer().getTimeRemaining() < t);
 		tearDown();
 	}
 	
@@ -67,7 +67,8 @@ public class TimerTest {
 		System.out.println("Timer - stop");
 		setUp();
 		instance.start(level);
-		assertEquals(instance.getTimer().exit(),-1);
+		instance.getTimer().stop();
+		assertFalse(instance.getTimer().isRun());
 		tearDown();
 	}
 }

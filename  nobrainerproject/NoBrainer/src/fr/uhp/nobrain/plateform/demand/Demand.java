@@ -28,6 +28,7 @@ public class Demand extends Observable implements Model{
         s.beginTransaction();
         Query q = s.createQuery("from Invitation where playerTwoId = '" + Context.getCurrentPlayer().getId()+"'");
         invitations = q.list();
+        System.out.println("DEMAND FROM " + q.list().get(0));
 //        filter();
         s.close();
         (new DemandView()).initialize(this);

@@ -29,7 +29,7 @@ public class DemandController implements Controller {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						Invitation inv = new Invitation(
-								PlayerPersistance.select(view.getAccepts().get(id).getText()),
+								PlayerPersistance.select(view.getNickName().get(id).getText()),
 								Context.getCurrentPlayer());
 						FriendsServer.accept(inv);
 						view.getAccepts().get(id).setEnabled(false);

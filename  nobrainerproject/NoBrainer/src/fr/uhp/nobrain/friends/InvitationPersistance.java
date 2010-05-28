@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class InvitationPersistance {
-
+	
 	@SuppressWarnings("unchecked")
 	public static int select(Invitation invitation) throws Exception {
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -17,12 +17,14 @@ public class InvitationPersistance {
 		Query q = s.createQuery("from Invitation");
 		List<Invitation> l = q.list();
 
+		int result = -1;
+		
 		for (Invitation i : l)
 			if (invitation.equals(i))
-				return i.getInvitationId();
+				result =  i.getInvitationId();
 
 		s.close();
-		return -1;
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")

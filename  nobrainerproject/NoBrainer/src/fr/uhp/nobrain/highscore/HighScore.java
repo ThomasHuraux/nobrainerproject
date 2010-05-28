@@ -30,6 +30,7 @@ public class HighScore extends Observable implements Model{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public HighScoreView getTabView() {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();

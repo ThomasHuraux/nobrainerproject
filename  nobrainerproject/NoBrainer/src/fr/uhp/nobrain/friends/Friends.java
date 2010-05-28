@@ -32,7 +32,7 @@ public class Friends implements java.io.Serializable {
 	}
 	
 	public Friends(Invitation invitation) {
-		this.playerOneId = invitation.getInvitationId();
+		this.playerOneId = invitation.getPlayerOneId();
 		this.playerTwoId = invitation.getPlayerTwoId();
 	}
 

@@ -2,6 +2,7 @@ package fr.uhp.nobrain.plateform.demand;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -42,7 +43,9 @@ public class DemandView extends JPanel implements View{
 
 		for(int i = 0; i<demand.getInvitations().size();i++){
 			try {
-				name.add(new JLabel(demand.getInvitations().get(i).getPlayerOneName()));
+				JLabel l = new JLabel(demand.getInvitations().get(i).getPlayerOneName());
+				l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+				name.add(l);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -59,13 +62,14 @@ public class DemandView extends JPanel implements View{
 				line.setBackground(Color.lightGray);
 			
 			b = !b;
+			line.setPreferredSize(new Dimension(290,20));
 			inpan.add(line);
 		}
 		
-		jsp.add(inpan);
+		inpan.setPreferredSize(new Dimension(290,440));
+		jsp = new JScrollPane(inpan);
 		
 		setLayout(new BorderLayout());
-		add(new JLabel("They want be your friend :"),BorderLayout.NORTH);
 		add(jsp,BorderLayout.CENTER);
 		add(quit,BorderLayout.SOUTH);
 		

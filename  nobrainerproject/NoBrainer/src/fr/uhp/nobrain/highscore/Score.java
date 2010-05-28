@@ -89,11 +89,11 @@ public class Score implements java.io.Serializable ,java.lang.Comparable<Score> 
 	}
 
 	public int compareTo(Score other) {
-		 int n1 = other.getScore(); 
-	     int n2 = this.getScore(); 
+		 int n1 = other.getScore();
+	     int n2 = this.getScore();
 	     if (n1 > n2)  return -1;
-	     else if(n1 == n2) return 0; 
-	     else return 1; 
+	     else if(n1 == n2) return 0;
+	     else return 1;
 	}
 	
 	@Override
