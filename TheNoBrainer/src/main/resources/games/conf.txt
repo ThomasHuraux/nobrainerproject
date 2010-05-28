@@ -1,0 +1,2 @@
+src/main/resources/games/GameLetter.jar	GameLetter
+src/main/resources/games/GameNumber.jar	GameNumber

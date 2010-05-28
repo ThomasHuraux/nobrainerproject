@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="nobrainer">
+        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+        <property name="hibernate.connection.password">nobrainerpwd</property>
+        <property name="hibernate.connection.url">jdbc:mysql://db4free.net:3306/nobrainer</property>
+        <property name="hibernate.connection.username">nobrainer</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <mapping class="fr.uhp.nobrain.player.Player"/>
+        <mapping class="fr.uhp.nobrain.friends.Invitation"/>
+        <mapping class="fr.uhp.nobrain.friends.Friends"/>
+        <mapping class="fr.uhp.nobrain.highscore.Score"/>
+    </session-factory>
+</hibernate-configuration>

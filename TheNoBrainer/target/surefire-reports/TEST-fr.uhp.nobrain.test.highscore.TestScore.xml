@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.008" errors="0" skipped="0" tests="5" name="fr.uhp.nobrain.test.highscore.TestScore">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/amd64"/>
+    <property name="java.vm.version" value="14.0-b16"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="FR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/labedan/workspace/TheNoBrainer"/>
+    <property name="java.runtime.version" value="1.6.0_18-b18"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="basedir" value="/home/labedan/workspace/TheNoBrainer"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter7131107846155406215.jar"/>
+    <property name="javax.accessibility.assistive_technologies" value="org.GNOME.Accessibility.JavaBridge"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="surefire.test.class.path" value="/home/labedan/workspace/TheNoBrainer/target/test-classes:/home/labedan/workspace/TheNoBrainer/target/classes:/home/labedan/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:/home/labedan/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar:/home/labedan/.m2/repository/org/hibernate/hibernate/3.2.7.ga/hibernate-3.2.7.ga.jar:/home/labedan/.m2/repository/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar:/home/labedan/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar:/home/labedan/.m2/repository/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1.jar:/home/labedan/.m2/repository/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar:/home/labedan/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/home/labedan/.m2/repository/antlr/antlr/2.7.6/antlr-2.7.6.jar:/home/labedan/.m2/repository/cglib/cglib/2.1_3/cglib-2.1_3.jar:/home/labedan/.m2/repository/asm/asm/1.5.3/asm-1.5.3.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-annotations/3.4.0.GA/hibernate-annotations-3.4.0.GA.jar:/home/labedan/.m2/repository/org/hibernate/ejb3-persistence/1.0.2.GA/ejb3-persistence-1.0.2.GA.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-commons-annotations/3.1.0.GA/hibernate-commons-annotations-3.1.0.GA.jar:/home/labedan/.m2/repository/org/slf4j/slf4j-api/1.6.0/slf4j-api-1.6.0.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-core/3.3.0.SP1/hibernate-core-3.3.0.SP1.jar:/home/labedan/.m2/repository/org/slf4j/integration/1.6.0/integration-1.6.0.jar:/home/labedan/.m2/repository/ant/ant-junit/1.6.5/ant-junit-1.6.5.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.main/2.0.2/org.apache.felix.main-2.0.2.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.framework/2.0.2/org.apache.felix.framework-2.0.2.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.shell/1.4.1/org.apache.felix.shell-1.4.1.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.shell.tui/1.4.1/org.apache.felix.shell.tui-1.4.1.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.bundlerepository/1.4.2/org.apache.felix.bundlerepository-1.4.2.jar:/home/labedan/.m2/repository/org/slf4j/log4j-over-slf4j/1.6.0/log4j-over-slf4j-1.6.0.jar:/home/labedan/.m2/repository/mysql/mysql-connector-java/5.1.12/mysql-connector-java-5.1.12.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler"/>
+    <property name="os.version" value="2.6.32-22-generic"/>
+    <property name="user.home" value="/home/labedan"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="labedan"/>
+    <property name="java.class.path" value="/home/labedan/workspace/TheNoBrainer/target/test-classes:/home/labedan/workspace/TheNoBrainer/target/classes:/home/labedan/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:/home/labedan/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar:/home/labedan/.m2/repository/org/hibernate/hibernate/3.2.7.ga/hibernate-3.2.7.ga.jar:/home/labedan/.m2/repository/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar:/home/labedan/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar:/home/labedan/.m2/repository/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1.jar:/home/labedan/.m2/repository/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar:/home/labedan/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/home/labedan/.m2/repository/antlr/antlr/2.7.6/antlr-2.7.6.jar:/home/labedan/.m2/repository/cglib/cglib/2.1_3/cglib-2.1_3.jar:/home/labedan/.m2/repository/asm/asm/1.5.3/asm-1.5.3.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-annotations/3.4.0.GA/hibernate-annotations-3.4.0.GA.jar:/home/labedan/.m2/repository/org/hibernate/ejb3-persistence/1.0.2.GA/ejb3-persistence-1.0.2.GA.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-commons-annotations/3.1.0.GA/hibernate-commons-annotations-3.1.0.GA.jar:/home/labedan/.m2/repository/org/slf4j/slf4j-api/1.6.0/slf4j-api-1.6.0.jar:/home/labedan/.m2/repository/org/hibernate/hibernate-core/3.3.0.SP1/hibernate-core-3.3.0.SP1.jar:/home/labedan/.m2/repository/org/slf4j/integration/1.6.0/integration-1.6.0.jar:/home/labedan/.m2/repository/ant/ant-junit/1.6.5/ant-junit-1.6.5.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.main/2.0.2/org.apache.felix.main-2.0.2.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.framework/2.0.2/org.apache.felix.framework-2.0.2.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.shell/1.4.1/org.apache.felix.shell-1.4.1.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.shell.tui/1.4.1/org.apache.felix.shell.tui-1.4.1.jar:/home/labedan/.m2/repository/org/apache/felix/org.apache.felix.bundlerepository/1.4.2/org.apache.felix.bundlerepository-1.4.2.jar:/home/labedan/.m2/repository/org/slf4j/log4j-over-slf4j/1.6.0/log4j-over-slf4j-1.6.0.jar:/home/labedan/.m2/repository/mysql/mysql-connector-java/5.1.12/mysql-connector-java-5.1.12.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/usr/lib/jvm/java-6-openjdk/jre"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="fr"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_18"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-openjdk/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="localRepository" value="/home/labedan/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0" classname="fr.uhp.nobrain.test.highscore.TestScore" name="testEqualsSuccess"/>
+  <testcase time="0" classname="fr.uhp.nobrain.test.highscore.TestScore" name="testCompareToLet"/>
+  <testcase time="0.001" classname="fr.uhp.nobrain.test.highscore.TestScore" name="testCompareToGrt"/>
+  <testcase time="0.001" classname="fr.uhp.nobrain.test.highscore.TestScore" name="testCompareToEqu"/>
+  <testcase time="0" classname="fr.uhp.nobrain.test.highscore.TestScore" name="testEqualsFailure"/>
+</testsuite>
