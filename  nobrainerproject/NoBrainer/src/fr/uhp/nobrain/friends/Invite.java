@@ -6,9 +6,9 @@ public class Invite extends Action{
 
 	private Invitation invitation;
 	
-	public Invite(int playerOneId, int playerTwoId) {
-		this.invitation = new Invitation(playerOneId, playerTwoId);
-	}
+//	public Invite(int playerOneId, int playerTwoId) {
+//		this.invitation = new Invitation(playerOneId, playerTwoId);
+//	}
 	
 	public Invite(Player player1, Player player2) {
 		this.invitation = new Invitation(player1, player2);

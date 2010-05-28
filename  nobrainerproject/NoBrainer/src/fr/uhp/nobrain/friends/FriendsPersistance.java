@@ -43,6 +43,7 @@ public class FriendsPersistance {
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static boolean areFriends(Player p1, Player p2){
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
@@ -52,9 +53,10 @@ public class FriendsPersistance {
 
 		for (Friends f : l)
 			if((f.getPlayerOneId() == p1.getId() && f.getPlayerTwoId() == p2.getId())
-					||(f.getPlayerOneId() == p2.getId() && f.getPlayerTwoId() == p1.getId()))
+					||(f.getPlayerOneId() == p2.getId() && f.getPlayerTwoId() == p1.getId())) {
+				s.close();
 				return true;
-		
+			}
 		return false;
 	}
 

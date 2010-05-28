@@ -14,7 +14,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.uhp.nobrain.player.Player;
-import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.HibernateUtil;
 
 @Entity
@@ -39,8 +38,8 @@ public class Friends implements java.io.Serializable {
 	public Friends(Player player1, Player player2) {
 		super();
 		try {
-			this.playerOneId = PlayerPersistance.select(player1);
-			this.playerTwoId = PlayerPersistance.select(player2);
+			this.playerOneId = player1.getId();
+			this.playerTwoId = player2.getId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

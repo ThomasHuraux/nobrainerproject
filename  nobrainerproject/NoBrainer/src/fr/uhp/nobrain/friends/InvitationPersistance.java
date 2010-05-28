@@ -48,8 +48,6 @@ public class InvitationPersistance {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		
-		System.out.println(i.getPlayerOneName() + " " + i.getPlayerTwoName());
-		
 		boolean persist = false;
 		if (! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerOneId()) 
 				|| ! fr.uhp.nobrain.player.PlayerPersistance.alreadyExists(i.getPlayerTwoId())

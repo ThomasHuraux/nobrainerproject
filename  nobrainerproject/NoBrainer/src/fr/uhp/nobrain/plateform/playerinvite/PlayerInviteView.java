@@ -51,8 +51,8 @@ public class PlayerInviteView extends JPanel implements View{
 				e.printStackTrace();
 			}
 			try {
-				if (!InvitationPersistance.alreadyExists(new Invitation(Context.getCurrentPlayer().getId(),
-				PlayerPersistance.select(getNames().get(i).getText()).getId())))
+				if (!InvitationPersistance.alreadyExists(new Invitation(Context.getCurrentPlayer(),
+				PlayerPersistance.select(getNames().get(i).getText()))))
 					invite.add(new JButton("Invite"));
 				else {
 					JButton button = new JButton("Sent");

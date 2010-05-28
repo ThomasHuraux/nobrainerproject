@@ -23,8 +23,8 @@ public class Invitation implements java.io.Serializable {
 	public Invitation(Player player1, Player player2) {
 		super();
 		try {
-			this.playerOneId = PlayerPersistance.select(player1);
-			this.playerTwoId = PlayerPersistance.select(player2);
+			this.playerOneId = player1.getId();
+			this.playerTwoId = player2.getId();
 			System.out.println("\n" + playerOneId + " " + playerTwoId + "\n");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -63,10 +63,6 @@ public class Invitation implements java.io.Serializable {
 		this.playerOneId = playerOneId;
 	}
 	
-	public void setPlayerOneName(String name) {
-		
-	}
-	
 	@Id
 	@Column(name="playerTwoId",insertable=false,updatable=false)
 	public int getPlayerTwoId() {
@@ -75,10 +71,6 @@ public class Invitation implements java.io.Serializable {
 	
 	public void setPlayerTwoId(int playerTwoId) {
 		this.playerTwoId = playerTwoId;
-	}
-	
-	public void setPlayerTwoName(String name) {
-		
 	}
 	
 	@Transient

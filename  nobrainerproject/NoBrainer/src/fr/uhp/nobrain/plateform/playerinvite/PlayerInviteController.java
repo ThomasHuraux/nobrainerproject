@@ -29,7 +29,8 @@ public class PlayerInviteController implements Controller{
 			((PlayerInviteView)view).getInvite().get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					try {
-						FriendsServer.invite(Context.getCurrentPlayer().getId(),PlayerPersistance.select(piv.getNames().get(id).getText()).getId());
+						System.out.println(Context.getCurrentPlayer().getId() + " " + PlayerPersistance.select(piv.getNames().get(id).getText()).getId());
+						FriendsServer.invite(Context.getCurrentPlayer(),PlayerPersistance.select(piv.getNames().get(id).getText()));
 						piv.getInvite().get(id).setEnabled(false);
 						piv.getInvite().get(id).setText("Sent");
 					} catch (Exception e1) {

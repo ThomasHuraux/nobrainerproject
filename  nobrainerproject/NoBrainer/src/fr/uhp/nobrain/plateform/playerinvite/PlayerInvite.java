@@ -26,7 +26,7 @@ public class PlayerInvite extends Observable implements Model{
 
         Query q = s.createQuery("from Player where id != " + Context.getCurrentPlayer().getId());
         players = q.list();
-
+        
         s.close();
         
         (new PlayerInviteView()).initialize(this);

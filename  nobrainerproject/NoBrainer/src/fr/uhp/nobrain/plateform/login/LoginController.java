@@ -31,7 +31,7 @@ public class LoginController implements Controller {
 				Player player = new Player(view.getNickname().getText(), view.getPass().getText());
 				MainMenu mn;
 				try {
-					if (PlayerPersistance.select(player) >= 0) {
+					if (PlayerPersistance.select(player) != null) {
 						Context.setCurrentPlayer(player);
 						mn = new MainMenu();
 						Context.change(mn);

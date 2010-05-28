@@ -79,40 +79,12 @@ public class TestPlayerPersistence {
 	}
 	
 	@Test
-	public void testAlreadyExistsByIdSuccess() {
-		setUp();
-		try {
-			PlayerPersistance.persist(player);
-			assertTrue(PlayerPersistance.alreadyExists(player.getId()));
-			PlayerPersistance.delete(player);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			tearDown();
-		}	
-	}
-	
-	@Test
-	public void testAlreadyExistsByIdFailure() {
-		setUp();
-		try {
-			assertFalse(PlayerPersistance.alreadyExists(player.getId()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			tearDown();
-		}	
-	}
-	
-	@Test
 	public void testSelectByObjectSuccess() {
 		setUp();
 		
 		try {
 			PlayerPersistance.persist(player);
-			assertTrue(PlayerPersistance.select(player) != -1);
+			assertTrue(PlayerPersistance.select(player) != null);
 			PlayerPersistance.delete(player);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -127,7 +99,7 @@ public class TestPlayerPersistence {
 		setUp();
 		
 		try {
-			assertTrue(PlayerPersistance.select(new Player("Titi", "Grosminet")) == -1);
+			assertTrue(PlayerPersistance.select(new Player("Titi", "Grosminet")) == null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

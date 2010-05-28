@@ -26,21 +26,22 @@ public class Demand extends Observable implements Model{
 		current = Context.getCurrentPlayer();
         Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
-        Query q = s.createQuery("from Invitation where playerTwoId = '" + Context.getCurrentPlayer().getId()+"'");
+        Query q = s.createQuery("from Invitation where playerTwoId = "+current.getId());
         invitations = q.list();
-        System.out.println("DEMAND FROM " + q.list().get(0));
-//        filter();
+        System.out.println();
+//        if (invitations != null)
+//        	filter();
         s.close();
         (new DemandView()).initialize(this);
 	}
 
-//	
-//	private void filter(){
-//		for(Invitation i : invitations){
-//			if(current.getId() != i.getPlayerTwoId())
-//				invitations.remove(i);
-//		}
-//	}
+	
+	private void filter(){
+		for(Invitation i : invitations){
+			if(current.getId() != i.getPlayerTwoId())
+				invitations.remove(i);
+		}
+	}
 	
 	public Player getCurrent() {
 		return current;
