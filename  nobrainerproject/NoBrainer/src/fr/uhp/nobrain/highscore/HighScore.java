@@ -7,7 +7,6 @@ import java.util.Observer;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import fr.uhp.nobrain.friends.Friends;
 import fr.uhp.nobrain.friends.FriendsPersistance;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.player.PlayerPersistance;
