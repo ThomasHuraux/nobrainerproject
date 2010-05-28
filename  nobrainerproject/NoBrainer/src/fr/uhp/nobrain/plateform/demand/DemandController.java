@@ -9,6 +9,7 @@ import fr.uhp.nobrain.friends.Invitation;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
 import fr.uhp.nobrain.player.PlayerPersistance;
 import fr.uhp.nobrain.tools.Context;
 
@@ -59,7 +60,8 @@ public class DemandController implements Controller {
 		
 		view.getQuit().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				// Return to menu
+				MainMenu mm = new MainMenu();
+				Context.change(mm);
 			}
 		});
 		

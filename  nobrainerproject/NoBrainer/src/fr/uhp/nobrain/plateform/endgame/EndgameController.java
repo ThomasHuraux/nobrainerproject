@@ -4,13 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import org.hibernate.Session;
+
 import fr.uhp.nobrain.games.GameContext;
+import fr.uhp.nobrain.highscore.Score;
 import fr.uhp.nobrain.mvc.Controller;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
 import fr.uhp.nobrain.plateform.container.GameContainer;
 import fr.uhp.nobrain.plateform.mainmenu.MainMenu;
 import fr.uhp.nobrain.tools.Context;
+import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class EndgameController implements Controller{
 

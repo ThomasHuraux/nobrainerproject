@@ -3,8 +3,13 @@ package fr.uhp.nobrain.plateform.endgame;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.hibernate.Session;
+
+import fr.uhp.nobrain.highscore.Score;
 import fr.uhp.nobrain.mvc.Model;
 import fr.uhp.nobrain.mvc.View;
+import fr.uhp.nobrain.tools.Context;
+import fr.uhp.nobrain.tools.HibernateUtil;
 
 public class Endgame extends Observable implements Model{
 
@@ -16,6 +21,20 @@ public class Endgame extends Observable implements Model{
 		this.score = score;
 		this.level = level;
 		(new EndgameView()).initialize(this);
+		
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		
+		Score sc = new Score();
+		sc.setLevel(level);
+		sc.setScore(score);
+		sc.setPlayerId(Context.getCurrentPlayer().getId());
+		
+		s.save(sc);
+		s.flush();
+		s.getTransaction().commit();
+		s.close();
+		
 	}
 	
 	public void attach(Observer v) {
